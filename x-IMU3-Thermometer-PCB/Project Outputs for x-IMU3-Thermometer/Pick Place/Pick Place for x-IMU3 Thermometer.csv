@@ -1,0 +1,37 @@
+Altium Designer Pick and Place Locations
+C:\MyFiles\x-io\Products\x-IMU3\x-IMU3-Thermometer\x-IMU3-Thermometer-PCB\Project Outputs for x-IMU3-Thermometer\Pick Place\Pick Place for x-IMU3 Thermometer.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       29/03/24
+Time:       15:14
+Revision:   7ab3a91a68f916fa38a0a86c5b9c1f688c2a1608
+Variant:    No variations
+Units used: mm
+
+"Designator","Center-X(mm)","Center-Y(mm)","Layer","Rotation","Comment"
+"R2","9.0000mm","11.5000mm","TopLayer","0","470R"
+"D1","9.2500mm","12.7500mm","TopLayer","0","APT1608VRCXF/A-5MAV"
+"C7","38.7500mm","9.0000mm","TopLayer","180","100nF"
+"C1","13.7500mm","4.2500mm","TopLayer","0","100nF"
+"C2","19.0000mm","12.7500mm","TopLayer","180","100nF"
+"C3","14.0000mm","12.7500mm","TopLayer","0","100nF"
+"C4","12.0000mm","12.7500mm","TopLayer","180","10uF"
+"C5","8.5000mm","3.5000mm","TopLayer","90","10uF"
+"C6","8.5000mm","1.5000mm","TopLayer","270","10uF"
+"D2","9.0000mm","7.7500mm","TopLayer","0","SP0402B-ULC-01ETG"
+"D3","9.0000mm","6.5000mm","TopLayer","0","SP0402B-ULC-01ETG"
+"D4","9.0000mm","10.2500mm","TopLayer","0","SP0402B-ULC-01ETG"
+"J1","16.2500mm","2.1350mm","TopLayer","0","Tag Connect No Legs"
+"J2","4.7500mm","7.0000mm","TopLayer","270","Molex 217179-0001"
+"R1","15.7500mm","4.2500mm","TopLayer","0","5.1kR"
+"R4","19.0000mm","7.0000mm","TopLayer","0","5.1kR"
+"R5","19.0000mm","8.2500mm","TopLayer","0","5.1kR"
+"R6","9.0000mm","5.2500mm","TopLayer","180","5.1kR"
+"R7","9.0000mm","9.0000mm","TopLayer","180","5.1kR"
+"U1","14.0000mm","8.5000mm","TopLayer","180","PIC32MM0256GPM028-I/ML"
+"U2","11.0000mm","2.5000mm","TopLayer","0","TPS7A0533PDBZ"
+"Y1","19.0000mm","10.5000mm","TopLayer","90","ECS-TXO-2520-33-240-AN-TR"
+"U3","38.5000mm","7.0000mm","TopLayer","180","TMP117AIDRV"
+"R3","18.2500mm","5.2500mm","TopLayer","90","470R"
