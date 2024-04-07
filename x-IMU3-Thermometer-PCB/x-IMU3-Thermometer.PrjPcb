@@ -186,16 +186,20 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Parameter1]
-Name=Author
-Value=Seb Madgwick
+Name=
+Value=
 
 [Parameter2]
+Name=Version
+Value=v1.1
+
+[Parameter3]
 Name=Project
 Value=x-IMU3 Thermometer
 
-[Parameter3]
-Name=Version
-Value=v1.0
+[Parameter4]
+Name=Author
+Value=Seb Madgwick
 
 [Configuration1]
 Name=Sources
