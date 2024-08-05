@@ -7,7 +7,7 @@
  * PIC32MM0256GPM028
  *
  * Compiler:
- * XC32 v4.40, MPLAB Harmony 3
+ * XC32 v4.45, MPLAB Harmony 3
  */
 
 //------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ int main(void) {
 
     // Print start up message
     ResetCausePrint(ResetCauseGet());
-    printf("x-IMU3-Thermometer v1.0.0\n");
+    printf("x-IMU3-Thermometer v1.0.1\n");
 
     // Initialise modules
     TimerInitialise();

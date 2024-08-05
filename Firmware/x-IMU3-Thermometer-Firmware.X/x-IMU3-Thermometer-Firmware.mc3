@@ -5725,11 +5725,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\drv_usbfs.c</file>
-         <hash>e44edfe45c70f71760ba7e7f618087ea362ff06dcea72a0803f77b8b9a4bbdf0</hash>
+         <hash>fc11cf1cd89567f204575865277da8b4e9dfe66f2270f81d9f8dcce260923ad9</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\drv_usbfs_device.c</file>
-         <hash>f1b2e18aa1aef64aa83ee94ed0295b6e0b25517d60974218eddf26497c418357</hash>
+         <hash>edd0e74877cbf0eb181e12ef4cbb69bfba4d81a7f35f39b01942ff79cea93806</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\drv_usbfs_local.h</file>
@@ -5745,11 +5745,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\plib_usbfs_header.h</file>
-         <hash>0b40f0e15d10a80cf2baaa2a18aef603644d004cb7fdd503a742b6d64d3fd58e</hash>
+         <hash>4bf6eee0feead470e6ac2cd732bc274c5759d1afe2cd226f7d884125a9f86d0c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ALL_Interrupt_Default.h</file>
-         <hash>1b46feb43fdb2e8d6dd5b41ddfc0f5d19279054aa44a8f2e20ff74cdd8157261</hash>
+         <hash>d6ac8dfb5d85240389e67493f3a4ad69e1caf141d3e48704b15fcbb0c531cabe</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ALL_Interrupt_Unsupported.h</file>
@@ -5757,7 +5757,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ActivityPending_Default.h</file>
-         <hash>adc55bece7f5bd0bcf22d6decd9b78cf6b1e72d09095bd186787b69e35ba5c75</hash>
+         <hash>ecf5168dcda70df3e88e19a53081ef6cdd5ce0469e13a1b92a7784d3866286ad</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ActivityPending_Unsupported.h</file>
@@ -5765,7 +5765,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_AutomaticSuspend_Default.h</file>
-         <hash>bbb49ba2a1e89b896466f39ad798203b063c9f154aa1a6509f34d117ffc69138</hash>
+         <hash>5a09385efbe4167dba2654b87807298bea373375edf6b79658d065f2b00f33e1</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_AutomaticSuspend_Unsupported.h</file>
@@ -5773,7 +5773,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_BDTBaseAddress_Default.h</file>
-         <hash>68fbffceb879e765571791100ac23053b162a0510755ef177cc8ff7083afe8f9</hash>
+         <hash>2eb928b9a2ec5b6ad201c19b5cc458d1461e03846236b98b184f2b25fc26b1b8</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_BDTBaseAddress_Unsupported.h</file>
@@ -5781,7 +5781,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_BDTFunctions_PIC32.h</file>
-         <hash>0ad6b797728a2dafde391d0801ffe67b461953e0803bdb6fcc3dce971385a722</hash>
+         <hash>4dc2ce9a382a050ed79eb41f445cdbaa9e4f604abdd14befb1ae6f0eb3ed36b3</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_BDTFunctions_Unsupported.h</file>
@@ -5789,7 +5789,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_BufferFreeze_Default.h</file>
-         <hash>710b605d6fc82760e3d4fb5d8c2edac5f5bca39c8854498232de853db07e0aaa</hash>
+         <hash>1ad52449b41b458cf05e9573ae27a250d17c88a1a9831475a7e6ce6174e8532d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_BufferFreeze_Unsupported.h</file>
@@ -5797,7 +5797,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_DeviceAddress_Default.h</file>
-         <hash>6249313f87ec9055d6be92042afcdebb25173f04dcf68f5793c1242587cd429d</hash>
+         <hash>050b17f900927fd96fa3359bc90e880c80959aa614d56cbd270b042ecbbbe2eb</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_DeviceAddress_Unsupported.h</file>
@@ -5805,7 +5805,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EP0LowSpeedConnect_Default.h</file>
-         <hash>2bd121f55865942c85e6f6bc3ccf258a7cc6c89c3c35f6c23a1f59dbc2f8e132</hash>
+         <hash>20eabaaa6b8558a1f5d8af22b1a55d1d3cd1459a14b9e5b8543d9fef3ba4829d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EP0LowSpeedConnect_Unsupported.h</file>
@@ -5813,7 +5813,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EP0NAKRetry_Default.h</file>
-         <hash>5375417f2eda183747f0bc01039d6a82401b3a90d68bfe71630ddea00c8c0a5e</hash>
+         <hash>8d6418d0b663c7f52430245441e52790548a765ec3e48e8ff1d4ead86020184b</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EP0NAKRetry_Unsupported.h</file>
@@ -5837,7 +5837,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EPnRxEnableEnhanced_PIC32.h</file>
-         <hash>62ff9407e36cb9aff174717815d03307b82121b89298f9b0643b7eeb819b3602</hash>
+         <hash>732edf2154d31b74b512540def06c749cb503f3a4d56f89457150897040005f3</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EPnRxEnableEnhanced_Unsupported.h</file>
@@ -5853,7 +5853,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EPnTxRx_Default.h</file>
-         <hash>f074c52d28bb0956c548e14e18bef350c658f3c55a5bc6a5d8cc1ff41755cb37</hash>
+         <hash>80a328e1e584450683be14a2db5897e32440a1c4b887318df59457235854c767</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EPnTxRx_Unsupported.h</file>
@@ -5861,7 +5861,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ERR_InterruptStatus_Default.h</file>
-         <hash>600b73d75871e8273f469c3e97091f97e01920053985155164f93db241e58c8b</hash>
+         <hash>7217f2ed5dac20c4d10402cd7dc8a61bf21fc785bfd59f08cea66b947e0f623b</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ERR_InterruptStatus_Unsupported.h</file>
@@ -5869,7 +5869,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ERR_Interrupt_Default.h</file>
-         <hash>68fae2167eba5ddc52bee52984ffd57a0be34b4d0000fea7a1e4e0fa94837863</hash>
+         <hash>19bc56006071007501ef7648d7d510181cf661410bbd2cdf86364b10135cb8cd</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ERR_Interrupt_Unsupported.h</file>
@@ -5877,7 +5877,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EyePattern_Default.h</file>
-         <hash>6a3c0dcb8c6c74f86ea5ed2694c6e83143623399f0bfce142a2c678efeca895c</hash>
+         <hash>a4d5c9254b28cb061369a82bc285e65ab7edd3c8826e1104d8cc50fb5dd3d4ab</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_EyePattern_Unsupported.h</file>
@@ -5885,7 +5885,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_FrameNumber_Default.h</file>
-         <hash>8bc67f9f015e4808044a189ea8b55784f76bf3bdc81569cdf933e9c0dd83a147</hash>
+         <hash>895fe52cf0e2e2f24a92c586a6a7fa41f228bae7ffc98196622b495bcc2ddeab</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_FrameNumber_Unsupported.h</file>
@@ -5893,7 +5893,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_GEN_InterruptStatus_Default.h</file>
-         <hash>751e1789a4c829b9e6508b486b881a92d3a311ca9a01969831028b41d30359ca</hash>
+         <hash>a08654bcc33acc5b87127a657cdcd91278ae74c6c187e5b61fc841fec5a22dce</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_GEN_InterruptStatus_Unsupported.h</file>
@@ -5901,7 +5901,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_GEN_Interrupt_Default.h</file>
-         <hash>bfd46efe244584c153641b73acd82213d453fa6db12e85bd2634dadfdbfe5567</hash>
+         <hash>a3a6a8e602d0cc7b36744c101cae923f5c4b36498568e235f6efa75d4c5f722b</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_GEN_Interrupt_Unsupported.h</file>
@@ -5909,7 +5909,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_HostBusyWithToken_Default.h</file>
-         <hash>8d578924997158baae8c58c59d94f71f385755c408307f7d5ad54cf984838b2d</hash>
+         <hash>d14fdfa8dab382b14caa4d1cb0c7f726ffa0a998cb32b23b9c3d83f940124a17</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_HostBusyWithToken_Unsupported.h</file>
@@ -5917,7 +5917,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_HostGeneratesReset_Default.h</file>
-         <hash>8b9f8657c405e1ae4e249dcec3c02b0f45fd3e986d8765a25d4af0340e6caed1</hash>
+         <hash>54378f355548ef46684853bbdc350af868890f8b667d9ea1c12714d4f447ba7f</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_HostGeneratesReset_Unsupported.h</file>
@@ -5925,7 +5925,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastDirection_Default.h</file>
-         <hash>2cefc9436d95bde8fdc00a899a321314206178fb6db5de306a6b5f81db6b1943</hash>
+         <hash>b4c8cfb60ee4ca2f2233bbb8f0ec45af3b07f9e115f11bb90edb94989c48b791</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastDirection_Unsupported.h</file>
@@ -5933,7 +5933,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastEndpoint_Default.h</file>
-         <hash>a1fccfc867f18b6e41c517cf34a3f2422ceb18256335dc8c943d452f4b37b7f8</hash>
+         <hash>7e854601e084671864b6422c0edfb189e2b06364644978b7b8bfc5b362ce3384</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastEndpoint_Unsupported.h</file>
@@ -5941,7 +5941,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastPingPong_Default.h</file>
-         <hash>c826371e1f9938ca4942290bb06636c71d8d60afe319c6e59990d7ffccd0771a</hash>
+         <hash>8d155835ec86843a9470ea106a2f1262460300f1ff8621c5e4b710f999b63cf4</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastPingPong_Unsupported.h</file>
@@ -5949,7 +5949,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastTransactionDetails_Default.h</file>
-         <hash>2e2d88cbc30977931899fbc6a7b9d0501f7cf87dc16399e574e50a1064037dfb</hash>
+         <hash>a50a3305afbed5162d7550fc41f73ab106e0744b0f57b2590f9bd07b40cc8ef9</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LastTransactionDetails_Unsupported.h</file>
@@ -5957,7 +5957,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LiveJState_Default.h</file>
-         <hash>014627fc79b536977457ce805f0634d9ac24f901dbe98697322229f8c4c20970</hash>
+         <hash>29b6d36b879a03aad945874f151c6fa0998d0ddf64374cbb3e91f4fccec05c3c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LiveJState_Unsupported.h</file>
@@ -5965,7 +5965,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LiveSingleEndedZero_Default.h</file>
-         <hash>a6ba42dfa54aae2c9822b2d12dce4f596143cecdc615c44644e6f5f50e591bbc</hash>
+         <hash>b5cc0b4acd9db20c8f03f7456271e2e29aeab244956c7438086e02965d33d430</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_LiveSingleEndedZero_Unsupported.h</file>
@@ -5973,7 +5973,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ModuleBusy_Default.h</file>
-         <hash>8af39ae0222ddd0efdd0208feda24ba4e87296551f427160f7133756f6d61c1d</hash>
+         <hash>02a71f935a6d9922ba46df7eb9cfe739d4824348ff6effaacf538ff661c5b3ed</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ModuleBusy_Unsupported.h</file>
@@ -5981,7 +5981,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ModulePower_32Bit16Bit.h</file>
-         <hash>befe921f39877d72860989b20ac5aafcd5ff2da8bd125a6d1312aae430ce73f4</hash>
+         <hash>a1f108325d3625329b1553a1845a0e9b0b58be857c5b7981d5a887da059d3555</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ModulePower_Unsupported.h</file>
@@ -5989,7 +5989,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_NextTokenSpeed_Default.h</file>
-         <hash>b5214d9378c63de7b4b62be2dbb4ec06631e5ae4728bcdd0e7409494f61279e0</hash>
+         <hash>a6799c7253afa4c1be9e01fb3cedf5c82ebf48c76a8c26a93c3bfc6bc06948a6</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_NextTokenSpeed_Unsupported.h</file>
@@ -5997,7 +5997,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_ASessionValid_Default.h</file>
-         <hash>843a20e2e334b74e1ab1d9f6d647850a674589200d05f983b20ec0816c116a1e</hash>
+         <hash>c03c0791ace861077f37e3d531b4ac9f2eebcf00ea6f228c9823dd5fa768e393</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_ASessionValid_Unsupported.h</file>
@@ -6005,7 +6005,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_BSessionEnd_Default.h</file>
-         <hash>801a045ee18cea5fb9875544d60b76a04cc8fcacbc96a8a890f2b4eec66ce65b</hash>
+         <hash>7c5253cc1ecc77afc9831a873e31f890fe155e0c62aadb1a24150c47c3711b43</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_BSessionEnd_Unsupported.h</file>
@@ -6013,7 +6013,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_IDPinState_Default.h</file>
-         <hash>bcd9e8c414e5cddaf23365c8610e4ee612fc9f5cc81418871aa35f7f61410c62</hash>
+         <hash>db536c381b17a517fa7f9ed1bab691dffc752bc1090c93f67c00a8beb9541753</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_IDPinState_Unsupported.h</file>
@@ -6021,7 +6021,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_InterruptStatus_Default.h</file>
-         <hash>b1d6fc0a42ae60eb89cb3d0e89e6411f9a6d279531173d36b3dccbc10184fec3</hash>
+         <hash>1ba98f95c38c40fc4d0f75473f764869d80c47f2ee6c14d230bccec4954d771d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_InterruptStatus_Unsupported.h</file>
@@ -6029,7 +6029,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_Interrupt_Default.h</file>
-         <hash>108463ef94ddfd7a7166663f782f68066cb558ebb564a2ecadbc2d1817487f9f</hash>
+         <hash>488a63fe87318522b457fe459fe09a002f0cd271193757f21e738dda5f13c06e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_Interrupt_Unsupported.h</file>
@@ -6037,7 +6037,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_LineState_Default.h</file>
-         <hash>504d4f87815eb9d786f665502e4deeca5915d5528afe1040d3a24bc8bb75ab74</hash>
+         <hash>6dde5b7b1e5e2c3c4bf9053e53b64b4f0f7597a561b6db5f1540e3dc4c0a57fe</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_LineState_Unsupported.h</file>
@@ -6045,7 +6045,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_PullUpPullDown_Default.h</file>
-         <hash>de6d8956508c929e678a025c6f2929cc2a7197ba99f88197a233a19ddbe0b7e4</hash>
+         <hash>91888a2163e80768e08e877795b0f59fe6af0f442b14ad1a0b2438885b06d4dd</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_PullUpPullDown_Unsupported.h</file>
@@ -6053,7 +6053,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_SessionValid_Default.h</file>
-         <hash>9f80a608c61a9be62e91f7795d82a1dac715f81d3e602b7ada564123790ba9c1</hash>
+         <hash>70d0d4b185b18d6f81b9844bec6acc89d714995b24b07570edfdd04c8c53ef1b</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_SessionValid_Unsupported.h</file>
@@ -6061,7 +6061,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_VbusCharge_Default.h</file>
-         <hash>ed2624a34fd52cfb588a6a272fe943c8d438afab05aacbfa9d7dae85b8f26473</hash>
+         <hash>88413e2d8d44d77abcc75d91d777d8b28e0d27d78504f4e517173637e5018a5e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_VbusCharge_Unsupported.h</file>
@@ -6069,7 +6069,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_VbusDischarge_Default.h</file>
-         <hash>4f3e542bcd7a9a38ed3f8bd43955aa0d49519e936106e2a99aa68dce9ca08468</hash>
+         <hash>fdda2ee84f05a20177d741a3320e20572247f4b027168c3b982263073612a581</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_VbusDischarge_Unsupported.h</file>
@@ -6077,7 +6077,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_VbusPowerOnOff_Default.h</file>
-         <hash>d3da004450074c0a2e1a75e2930d5664a8d59aa9a6776354050deeaca535229c</hash>
+         <hash>d974156bde567bf7013c6d4c87cf40d81afebfb1c23035f63771068ac1002765</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OTG_VbusPowerOnOff_Unsupported.h</file>
@@ -6093,7 +6093,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OpModeSelect_Default.h</file>
-         <hash>594d7e665855cda6d399195eafb79cd77fbe93c7d991f223af2eab78012b4b45</hash>
+         <hash>e7402741c5b25f1f0f17210574aa0517f088e79b5db94023a161fe7477917b5b</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_OpModeSelect_Unsupported.h</file>
@@ -6101,7 +6101,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_PacketTransfer_Default.h</file>
-         <hash>65556c1467bde784c8ac8193897fcd92f24567c71866ce7596492c1d6c0f3111</hash>
+         <hash>de182c8e1b9cb89fc420b6cd2acb2e762635103303b872833b31a4b137460375</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_PacketTransfer_Unsupported.h</file>
@@ -6113,7 +6113,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ResumeSignaling_Default.h</file>
-         <hash>cbcfcdcfb7d8eafe626747edfe731ee81791a0b8af56bb96781b63c6aec207fc</hash>
+         <hash>9efc2b118f10c62a1bee649abc2574078b1424013d460df290291fc79f40a137</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_ResumeSignaling_Unsupported.h</file>
@@ -6121,7 +6121,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_SOFThreshold_Default.h</file>
-         <hash>b66dc479ba00c5293fcb5703a3f78d1126bd23e9d67c63972fcda0ae3b91b2c3</hash>
+         <hash>e3cc9f602aca227bc671c04c9397b67567736d683993fb632fab5aef63c10e9e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_SOFThreshold_Unsupported.h</file>
@@ -6129,7 +6129,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_SleepEntryGuard_Default.h</file>
-         <hash>56420066e69a153f6a290d21654ef708dcf476d4103a82a997d790a82530d3d9</hash>
+         <hash>c14ec9e3e6415c098c5b9fccc73c3719f5ff68fb0cde770bff3143c7560cd9f6</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_SleepEntryGuard_Unsupported.h</file>
@@ -6141,7 +6141,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_StartOfFrames_Default.h</file>
-         <hash>ce631da8741335977668fc01f3e69c088ee198ff668ced341b6a60fc102742fd</hash>
+         <hash>2ccfc5697e43bcad3ed36f13d3aad4f30a088c7f0b591ef8d7729af197e600b3</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_StartOfFrames_Unsupported.h</file>
@@ -6149,7 +6149,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_StopInIdle_Default.h</file>
-         <hash>064269ea4e830d3a5cb57356a7c250478b0d2932d26f41c73044407907fb09a8</hash>
+         <hash>ccae27c87d1badb88a41bd6f92e16ed55dac02c27f8b7618ba705129f28b3916</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_StopInIdle_Unsupported.h</file>
@@ -6157,7 +6157,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_Suspend_Default.h</file>
-         <hash>b03b0202279e7c97809f428ccd4b393ac928cf0828d8d2f9806513d44310aa0e</hash>
+         <hash>f9583d1a1228fe79906160ed90c2d70e36a92abde39a584d1efe3bf441c642be</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_Suspend_Unsupported.h</file>
@@ -6165,7 +6165,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_TokenEP_Default.h</file>
-         <hash>c0cbc8dc7bdd8a67dfc6971855cd9adb430a61591ebbb682f092bb9280e4b5fe</hash>
+         <hash>1775996c082b3ea883fa916df19fc92e40ae3039c98390a54f4a91ad13442041</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_TokenEP_Unsupported.h</file>
@@ -6173,7 +6173,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_TokenPID_Default.h</file>
-         <hash>7c919c1b7ffb0f0b1fa00ddac080bc9c9cff127c8439ae5ea65c0c16e1df197b</hash>
+         <hash>75cd4ec32e6b191032096c0b80d1f9456a541414530a48473e3e18469f39eac8</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usb_TokenPID_Unsupported.h</file>
@@ -6185,15 +6185,15 @@
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\templates\usbfs_registers.h</file>
-         <hash>246b77d5aa44e328179071cbab3cc45f8475881a5512454800b58ba52da18192</hash>
+         <hash>84928d1983780aa438a32c46c2412aa5bd75419751557947bdbb23a414121949</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\usb\usbfs\src\usbfs_registers.h</file>
-         <hash>aa30cbc10679b2c36aa4ae872ddfa123aa2c490d92d879f2dc530567360e3810</hash>
+         <hash>3ab3a9a2f834f67d2cba41b6179be69ee25cc80b9422a8e6c6aa00e0377cfe2d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\exceptions.c</file>
-         <hash>0e327257625f876f9ed6015b635990170482c65225d03d1184271567315cca14</hash>
+         <hash>ed8f326d4f1abc2e74c1743119304a2f613522e3baacdd8df59fdda14c44619e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
@@ -6233,11 +6233,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\evic\plib_evic.c</file>
-         <hash>cf1af124534991cd1d75f8686266abbc999a3cf25fae3656997934cb01ffda6f</hash>
+         <hash>ce457ce5d37de590d6e911457ecaf6c853391912f00b3278f7266ffd266e8244</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\evic\plib_evic.h</file>
-         <hash>31dd4fb9b8a2e88ca7fb7b35ceb5887dda0f6dacd099174385db8a2433aec6de</hash>
+         <hash>51ee35d6c1a13447fe5d8b63cd7a0e8b8ef10c991bb8ff47490daf855f55fcf1</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.c</file>
@@ -6301,11 +6301,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_device.c</file>
-         <hash>14543b5fdeb97f5cbf15e9f4c58c237795d97bd5d60e7a6109f2af85cc550d1b</hash>
+         <hash>af8a74c998876da1c72e4c0ed30b11a3dc98b7577857d659652cd0a0cc3e7078</hash>
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_device_cdc.c</file>
-         <hash>a78a4b87ca84d6c608567815a30da424b34610701aef90d26dc1ebaa8b1c8185</hash>
+         <hash>b97139f42ed16291e5325ae9a7948351f8be2ac4220b8c737892e063e1fc970f</hash>
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_device_cdc_acm.c</file>
@@ -6325,7 +6325,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_device_mapping.h</file>
-         <hash>c73881cf22375ff35c1290a2e40055cb8e1d955610d11c904914ff347d5b753d</hash>
+         <hash>8946c320acdb2ca965664fdf6830d839c8488cb0144d4430d9531fd4408d8df3</hash>
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_external_dependencies.h</file>
@@ -6369,7 +6369,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\usb_device_init_data.c</file>
-         <hash>20d9799e8bd642630b2c2e1348dfe06b33a0571e101231ba39ab70e1a6740628</hash>
+         <hash>b389543132c850e06b1e3b6523849de1f077fc77d075a55af9a3c0f989f8f91f</hash>
       </entry>
       <entry>
          <file>..\src\config\default\user.h</file>
