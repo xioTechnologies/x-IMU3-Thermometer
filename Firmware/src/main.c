@@ -37,7 +37,7 @@ int main(void) {
 
     // Print start up message
     ResetCausePrint(ResetCauseGet());
-    printf("x-IMU3-Thermometer v1.0.2\n");
+    printf("x-IMU3-Thermometer v1.1.0\n");
 
     // Initialise modules
     TimerInitialise();
@@ -57,7 +57,7 @@ int main(void) {
                 UsbCdcReadByte();
             }
             char string[256];
-            const int numberOfBytes = snprintf(string, sizeof (string), "{\"ping\":{\"interface\":\"USB\",\"deviceName\":\"x-IMU3 Thermometer\",\"serialNumber\":\"%08X\"}}\n", ThermometerReadUniqueID());
+            const int numberOfBytes = snprintf(string, sizeof (string), "{\"ping\":{\"interface\":\"USB\",\"name\":\"x-IMU3 Thermometer\",\"sn\":\"%08X\"}}\n", ThermometerReadUniqueID());
             UsbCdcWrite(string, numberOfBytes);
             LedBlink();
         }
