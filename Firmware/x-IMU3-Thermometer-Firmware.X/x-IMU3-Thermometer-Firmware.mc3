@@ -4881,17 +4881,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="VREF_CLOCK_FREQUENCY"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
-  &lt;core dnOrder=&quot;0&quot; id=&quot;VREF_CLOCK_FREQUENCY&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;0&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/core&gt;
-&lt;/core&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="WDT_ALLOWED_WINDOW_PERIOD"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;WDT_ALLOWED_WINDOW_PERIOD&quot;&gt;
@@ -5693,11 +5682,11 @@
    <generatedFileHashHistoryMap class="java.util.TreeMap">
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>80f43fc8e3c9829d1540f59b55480efc6a05ffed0669af5f018b5bdaf0fffab5</hash>
+         <hash>93c174d82690d63f99a7e80692b8e21b2acb645a48b9e6b9782a78df4beb6527</hash>
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>d28fd7a452497d3e0ad34fb315c1d2642efca6cf81019bc48f02dd6ec0c846e3</hash>
+         <hash>f409b66596056ef1efe387e493d1d21bc0dea0420d008e26f7adbdf3607b672d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>
@@ -6197,11 +6186,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>50e5aa98c44bdbe60e057b237a5f120426d036e222d6c41ecf9d57a767d217c1</hash>
+         <hash>8ab5163eaaed97365f55b63974c9691fa66eda1a275177d227eb49376a40088f</hash>
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.c</file>
-         <hash>1eb825398d944c1346a43ab5dd7aee1e2159128b5b1dc0645046b3e99e423e16</hash>
+         <hash>5271d6931751d8d4257b45d71446aae76f7529cd63d8c2967a21944a119c0925</hash>
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.h</file>
@@ -6209,7 +6198,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\osal\osal.h</file>
-         <hash>8404fbe44807fa0484ffb38843a72cb9af8e31c9c30bd1b2594e609b8ea317d9</hash>
+         <hash>1cfe3b61d9693b2369922041eef33fe16b3c1ccd9c85d4ded808b805f90a869c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\osal\osal_definitions.h</file>
@@ -6217,15 +6206,15 @@
       </entry>
       <entry>
          <file>..\src\config\default\osal\osal_impl_basic.h</file>
-         <hash>67ce72d34fd1e4dee0b6937fa026ab2c7bd285f82a24da09742c68333adaf0fc</hash>
+         <hash>65e68edbc0320d0407399f65e6d06ff7e6d3d7697231cf1fe0a1fdf1d65f0463</hash>
       </entry>
       <entry>
          <file>..\src\config\default\p32MM0256GPM028.ld</file>
-         <hash>a75f14d71977fb29bca9230f051a1ac5e8499243da300c2829b39f0c67abe3da</hash>
+         <hash>a8e191bc44d963a57747afe5b9c5562ff9f0adfcbb8ef4fc53847083457f0762</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.c</file>
-         <hash>73acfc4d1e5976c168ea48d7f5bb971079e7b6376854951257688b1ddb060df4</hash>
+         <hash>1e7c4781863c39fedfe7e66d2c96f366e94840101032c27998f7f7d7c5554297</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -6245,7 +6234,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\gpio\plib_gpio.h</file>
-         <hash>cde11cf8b6ca33837d8b3dcdccb522a8cab35fa6d29e4754f9de9201a4cc2c9c</hash>
+         <hash>633082abd2e6313cba7f0eaadc551bf7c798539598dc051b64ab21675e6ba02c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\rcon\plib_rcon.c</file>
@@ -6293,7 +6282,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\tasks.c</file>
-         <hash>393b52dbb0ac18715476ade72406dc303475384fe06d6cbcda91db38e244a615</hash>
+         <hash>42c6cbddc8b4efcbda1daefa860de47d4b1fe9d8163debf9caa5507a9b988bf6</hash>
       </entry>
       <entry>
          <file>..\src\config\default\toolchain_specifics.h</file>
@@ -6301,7 +6290,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_device.c</file>
-         <hash>af8a74c998876da1c72e4c0ed30b11a3dc98b7577857d659652cd0a0cc3e7078</hash>
+         <hash>25d4e1719a2948619c4f4b38406f896be37bbb74f4b8f631770ca32e1fe45b77</hash>
       </entry>
       <entry>
          <file>..\src\config\default\usb\src\usb_device_cdc.c</file>
@@ -6353,7 +6342,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\usb\usb_host.h</file>
-         <hash>56c248da571d1a46c5d6b5b34e28a978b30b40ee1fb04fa4f2efdcb8a5a1039b</hash>
+         <hash>9e71096993b82346d36f826b35ff46d1cecadbfda0fee4ae47125da2764391e4</hash>
       </entry>
       <entry>
          <file>..\src\config\default\usb\usb_host_client_driver.h</file>

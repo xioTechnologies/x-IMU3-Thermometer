@@ -89,6 +89,15 @@ void CLK_Initialize( void )
     SYSKEY = 0xAA996655U;
     SYSKEY = 0x556699AAU;
 
+    /* Peripheral Module Disable Configuration */
+    PMD1 = 0x0U;
+    PMD2 = 0x0U;
+    PMD3 = 0x0U;
+    PMD4 = 0x0U;
+    PMD5 = 0x0U;
+    PMD6 = 0x0U;
+    PMD7 = 0x0U;
+
     /* Even though SPLL is selected in FNOSC, Harmony generates #pragma code as FRCDIV, not as SPLL, in "initilization.c".
     * Switching to SPLL is done here after appropriate setting of SPLLCON register.
     * This is done to ensure we don't end-up changing PLL setting when it is ON. */
@@ -113,14 +122,6 @@ void CLK_Initialize( void )
     /* Configure FRC Self Tuning */
     OSCTUN = 0x9000;
 
-    /* Peripheral Module Disable Configuration */
-    PMD1 = 0x0U;
-    PMD2 = 0x0U;
-    PMD3 = 0x0U;
-    PMD4 = 0x0U;
-    PMD5 = 0x0U;
-    PMD6 = 0x0U;
-    PMD7 = 0x0U;
 
     /* Lock system since done with clock configuration */
     SYSKEY = 0x33333333U;

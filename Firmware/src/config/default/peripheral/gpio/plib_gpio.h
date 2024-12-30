@@ -64,30 +64,37 @@
 
 /*** Macros for DEBUG pin ***/
 #define DEBUG_Get()               ((PORTB >> 0) & 0x1)
+#define DEBUG_GetLatch()          ((LATB >> 0) & 0x1)
 #define DEBUG_PIN                  GPIO_PIN_RB0
 
 /*** Macros for SDA pin ***/
 #define SDA_Get()               ((PORTB >> 2) & 0x1)
+#define SDA_GetLatch()          ((LATB >> 2) & 0x1)
 #define SDA_PIN                  GPIO_PIN_RB2
 
 /*** Macros for SCL pin ***/
 #define SCL_Get()               ((PORTB >> 3) & 0x1)
+#define SCL_GetLatch()          ((LATB >> 3) & 0x1)
 #define SCL_PIN                  GPIO_PIN_RB3
 
 /*** Macros for VBUS pin ***/
 #define VBUS_Get()               ((PORTB >> 6) & 0x1)
+#define VBUS_GetLatch()          ((LATB >> 6) & 0x1)
 #define VBUS_PIN                  GPIO_PIN_RB6
 
 /*** Macros for LED pin ***/
 #define LED_Get()               ((PORTB >> 9) & 0x1)
+#define LED_GetLatch()          ((LATB >> 9) & 0x1)
 #define LED_PIN                  GPIO_PIN_RB9
 
 /*** Macros for D_N pin ***/
 #define D_N_Get()               ((PORTB >> 10) & 0x1)
+#define D_N_GetLatch()          ((LATB >> 10) & 0x1)
 #define D_N_PIN                  GPIO_PIN_RB10
 
 /*** Macros for D_P pin ***/
 #define D_P_Get()               ((PORTB >> 11) & 0x1)
+#define D_P_GetLatch()          ((LATB >> 11) & 0x1)
 #define D_P_PIN                  GPIO_PIN_RB11
 
 
