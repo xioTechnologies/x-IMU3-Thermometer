@@ -209,6 +209,9 @@
           <itemPath>../src/x-io-PIC32-Library/I2C/I2CMessage.h</itemPath>
           <itemPath>../src/x-io-PIC32-Library/I2C/I2CClientAddress.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="Pwm" displayName="Pwm" projectFiles="true">
+          <itemPath>../src/x-io-PIC32-Library/Pwm/Pwm4.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="ResetCause" displayName="ResetCause" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/ResetCause/ResetCause.h</itemPath>
         </logicalFolder>
@@ -307,6 +310,9 @@
           <itemPath>../src/x-io-PIC32-Library/I2C/I2C2.c</itemPath>
           <itemPath>../src/x-io-PIC32-Library/I2C/I2CMessage.c</itemPath>
           <itemPath>../src/x-io-PIC32-Library/I2C/I2CClientAddress.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Pwm" displayName="Pwm" projectFiles="true">
+          <itemPath>../src/x-io-PIC32-Library/Pwm/Pwm4.c</itemPath>
         </logicalFolder>
         <logicalFolder name="ResetCause" displayName="ResetCause" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/ResetCause/ResetCause.c</itemPath>

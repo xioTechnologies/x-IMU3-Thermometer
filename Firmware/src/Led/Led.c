@@ -10,6 +10,7 @@
 #include "definitions.h"
 #include "Led.h"
 #include "PeripheralBusClockFrequency.h"
+#include "Pwm/Pwm4.h"
 #include <stdint.h>
 
 //------------------------------------------------------------------------------
@@ -38,9 +39,8 @@ static State state;
  */
 void LedInitialise(void) {
 
-    // Configure PWM
-    CCP4CON1bits.MOD = 0b0100; // Dual Edge Compare mode
-    CCP4CON1bits.ON = 1;
+    // Initialise PWM
+    Pwm4Initialise(0);
 
     // Configure state update timer
     CCP2CON1bits.T32 = 1;
@@ -59,14 +59,14 @@ void Cct2InterruptHandler(void) {
     const uint16_t bright = 0xFFFF;
     switch (state) {
         case StateIdle:
-            CCP4RB = normal;
+            Pwm4Set(normal);
             break;
         case StateBlinkBegin:
-            CCP4RB = bright;
+            Pwm4Set(bright);
             state = StateBlinkEnd;
             break;
         case StateBlinkEnd:
-            CCP4RB = normal;
+            Pwm4Set(normal);
             state = StateIdle;
             break;
     }
