@@ -23,7 +23,7 @@ static uint16_t ReadRegister(const uint8_t address);
 // Functions
 
 /**
- * @brief Initialises the module.  This function must only be called once, on
+ * @brief Initialises the module. This function must only be called once, on
  * system startup.
  */
 void ThermometerInitialise(void) {
