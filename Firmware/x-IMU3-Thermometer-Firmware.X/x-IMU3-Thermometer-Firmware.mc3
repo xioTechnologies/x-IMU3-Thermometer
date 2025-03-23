@@ -1,4 +1,4 @@
-<config configName="default" projectName="x-IMU3-Thermometer-Firmware" configVersion="1.1" device="PIC32MM0256GPM028" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.0">
+<config configName="default" projectName="x-IMU3-Thermometer-Firmware" configVersion="1.1" device="PIC32MM0256GPM028" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -5686,11 +5686,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>f409b66596056ef1efe387e493d1d21bc0dea0420d008e26f7adbdf3607b672d</hash>
+         <hash>d4f61ef0bd751490ba417f316854133ff5daf9f98956284cfae32cb44f596abd</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>
-         <hash>10ec93c43a7b158a129ae05bd8f4a59ff5bcf3d0f3f062fdd64c374bc2d42099</hash>
+         <hash>4d4341a6f9628cea0bf73f980b639f7cb81089e55a60ad7e434be2a71e477442</hash>
       </entry>
       <entry>
          <file>..\src\config\default\driver\driver.h</file>
@@ -6186,15 +6186,15 @@
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>8ab5163eaaed97365f55b63974c9691fa66eda1a275177d227eb49376a40088f</hash>
+         <hash>2c29a3eb48e05a2cd615b859ad7757b0f403092d027d79b76200813c0055c440</hash>
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.c</file>
-         <hash>5271d6931751d8d4257b45d71446aae76f7529cd63d8c2967a21944a119c0925</hash>
+         <hash>6f2c4f2e9d64481f2754dcc6d6d33c6f288ad8fdf9c15f7597a7b303712bd274</hash>
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.h</file>
-         <hash>18fa0e2848cd2743a3d873986630516e784123eabc7aba156cbcad5900c5f231</hash>
+         <hash>b2ee7761a625f1f97d82bf08f25946e0d250d5206fe5a79d9b669838fd8dc448</hash>
       </entry>
       <entry>
          <file>..\src\config\default\osal\osal.h</file>
