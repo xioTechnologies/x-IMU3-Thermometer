@@ -1,18 +1,16 @@
 /**
- * @file Led.h
+ * @file Ximu3Device.h
  * @author Seb Madgwick
- * @brief LED driver.
+ * @brief x-IMU3 device.
  */
 
-#ifndef LED_H
-#define LED_H
+#ifndef XIMU3_DEVICE
+#define XIMU3_DEVICE
 
 //------------------------------------------------------------------------------
 // Function declarations
 
-void LedInitialise(void);
-void LedBlink(void);
-void LedStrobe(void);
+void Ximu3DeviceTasks(void);
 
 #endif
 
