@@ -9,9 +9,7 @@
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../src/Led</sourceRootElem>
-                <sourceRootElem>../src/Thermometer</sourceRootElem>
-                <sourceRootElem>../src/x-io-PIC32-Library</sourceRootElem>
+                <sourceRootElem>../src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
