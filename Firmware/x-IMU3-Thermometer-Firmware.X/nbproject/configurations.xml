@@ -228,6 +228,25 @@
         <itemPath>../src/x-io-PIC32-Library/Periodic.h</itemPath>
         <itemPath>../src/x-io-PIC32-Library/PeripheralBusClockFrequency.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="Ximu3Device" displayName="Ximu3Device" projectFiles="true">
+        <logicalFolder name="x-IMU3-Device"
+                       displayName="x-IMU3-Device"
+                       projectFiles="true">
+          <logicalFolder name="JSON" displayName="JSON" projectFiles="true">
+            <itemPath>../src/Ximu3Device/x-IMU3-Device/JSON/Json.h</itemPath>
+          </logicalFolder>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Binary.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/KeyCompare.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Metadata.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Command.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Data.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Definitions.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Settings.h</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3SettingsJson.h</itemPath>
+        </logicalFolder>
+        <itemPath>../src/Ximu3Device/Ximu3Device.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -325,13 +344,28 @@
           <itemPath>../src/x-io-PIC32-Library/Usb/UsbCdc.c</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="Ximu3Device" displayName="Ximu3Device" projectFiles="true">
+        <logicalFolder name="x-IMU3-Device"
+                       displayName="x-IMU3-Device"
+                       projectFiles="true">
+          <logicalFolder name="JSON" displayName="JSON" projectFiles="true">
+            <itemPath>../src/Ximu3Device/x-IMU3-Device/JSON/Json.c</itemPath>
+          </logicalFolder>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/KeyCompare.c</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Metadata.c</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Command.c</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Data.c</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Definitions.c</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3Settings.c</itemPath>
+          <itemPath>../src/Ximu3Device/x-IMU3-Device/Ximu3SettingsJson.c</itemPath>
+        </logicalFolder>
+        <itemPath>../src/Ximu3Device/Ximu3Device.c</itemPath>
+      </logicalFolder>
       <itemPath>../src/main.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../src/Led</Elem>
-    <Elem>../src/Thermometer</Elem>
-    <Elem>../src/x-io-PIC32-Library</Elem>
+    <Elem>../src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

@@ -25,6 +25,8 @@
 #include "Timer/Timer.h"
 #include "Uart/Uart2.h"
 #include "Usb/UsbCdc.h"
+#include "Ximu3Device/x-IMU3-Device/Ximu3Data.h"
+#include "Ximu3Device/Ximu3Device.h"
 
 //------------------------------------------------------------------------------
 // Functions
@@ -37,7 +39,7 @@ int main(void) {
 
     // Print start up message
     ResetCausePrint(ResetCauseGet());
-    printf("x-IMU3-Thermometer v1.1.2\n");
+    printf("x-IMU3 Thermometer v1.2.0\n");
 
     // Initialise modules
     TimerInitialise();
@@ -50,24 +52,17 @@ int main(void) {
 
         // Module tasks
         UsbCdcTasks();
-
-        // Ping response
-        if (UsbCdcAvailableRead() > 0) {
-            while (UsbCdcAvailableRead() > 0) {
-                UsbCdcReadByte();
-            }
-            char string[256];
-            const int numberOfBytes = snprintf(string, sizeof (string), "{\"ping\":{\"interface\":\"USB\",\"name\":\"x-IMU3 Thermometer\",\"sn\":\"%08X\"}}\n", ThermometerReadUniqueID());
-            UsbCdcWrite(string, numberOfBytes);
-            LedBlink();
-        }
+        Ximu3DeviceTasks();
 
         // Send temperature
         if (PERIODIC_POLL(1.0f)) {
-            char string[256];
-            static unsigned int seconds;
-            const int numberOfBytes = snprintf(string, sizeof (string), "T,%u000000,%0.4f\n", seconds++, ThermometerReadTemperature());
-            UsbCdcWrite(string, numberOfBytes);
+            const Ximu3DataTemperature data = {
+                .timestamp = TimerGetTicks64() / TIMER_TICKS_PER_MICROSECOND,
+                .temperature = ThermometerReadTemperature(),
+            };
+            char message[256];
+            const int numberOfBytes = Ximu3DataTemperatureAscii(message, sizeof (message), &data);
+            UsbCdcWrite(message, numberOfBytes);
         }
     }
     return (EXIT_FAILURE);
