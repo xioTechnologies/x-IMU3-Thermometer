@@ -1,7 +1,7 @@
 /**
  * @file Thermometer.h
  * @author Seb Madgwick
- * @brief Driver for the Texas Instruments TMP117.
+ * @brief Texas Instruments TMP117 driver.
  */
 
 #ifndef THERMOMETER_H
