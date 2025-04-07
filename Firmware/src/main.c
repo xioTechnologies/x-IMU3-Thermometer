@@ -18,7 +18,7 @@
 #include "ResetCause/ResetCause.h"
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdio.h> // snprintf
+#include <stdio.h>
 #include <stdlib.h>
 #include "Thermometer/Thermometer.h"
 #include "Timer/Timer.h"
