@@ -12,6 +12,7 @@
 
 void LedInitialise(void);
 void LedBlink(void);
+void LedStrobe(void);
 
 #endif
 
