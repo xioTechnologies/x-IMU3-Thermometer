@@ -15,6 +15,7 @@
 
 #include "definitions.h"
 #include "Led/Led.h"
+#include "Periodic.h"
 #include "ResetCause/ResetCause.h"
 #include <stdbool.h>
 #include <stddef.h>
@@ -22,7 +23,6 @@
 #include <stdlib.h>
 #include "Thermometer/Thermometer.h"
 #include "Timer/Timer.h"
-#include "Timer/TimerScheduler.h"
 #include "Uart/Uart2.h"
 #include "Usb/UsbCdc.h"
 
@@ -52,8 +52,8 @@ int main(void) {
         UsbCdcTasks();
 
         // Ping response
-        if (UsbCdcGetReadAvailable() > 0) {
-            while (UsbCdcGetReadAvailable() > 0) {
+        if (UsbCdcAvailableRead() > 0) {
+            while (UsbCdcAvailableRead() > 0) {
                 UsbCdcReadByte();
             }
             char string[256];
@@ -63,7 +63,7 @@ int main(void) {
         }
 
         // Send temperature
-        if (TIMER_SCHEDULER_POLL(1.0f)) {
+        if (PERIODIC_POLL(1.0f)) {
             char string[256];
             static unsigned int seconds;
             const int numberOfBytes = snprintf(string, sizeof (string), "T,%u000000,%0.4f\n", seconds++, ThermometerReadTemperature());

@@ -206,8 +206,6 @@
         <logicalFolder name="I2C" displayName="I2C" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/I2C/I2C.h</itemPath>
           <itemPath>../src/x-io-PIC32-Library/I2C/I2C2.h</itemPath>
-          <itemPath>../src/x-io-PIC32-Library/I2C/I2CMessage.h</itemPath>
-          <itemPath>../src/x-io-PIC32-Library/I2C/I2CClientAddress.h</itemPath>
         </logicalFolder>
         <logicalFolder name="Pwm" displayName="Pwm" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/Pwm/Pwm4.h</itemPath>
@@ -217,7 +215,6 @@
         </logicalFolder>
         <logicalFolder name="Timer" displayName="Timer" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/Timer/Timer.h</itemPath>
-          <itemPath>../src/x-io-PIC32-Library/Timer/TimerScheduler.h</itemPath>
         </logicalFolder>
         <logicalFolder name="Uart" displayName="Uart" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/Uart/Uart.h</itemPath>
@@ -226,7 +223,9 @@
         <logicalFolder name="Usb" displayName="Usb" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/Usb/UsbCdc.h</itemPath>
         </logicalFolder>
+        <itemPath>../src/x-io-PIC32-Library/Config.h</itemPath>
         <itemPath>../src/x-io-PIC32-Library/Fifo.h</itemPath>
+        <itemPath>../src/x-io-PIC32-Library/Periodic.h</itemPath>
         <itemPath>../src/x-io-PIC32-Library/PeripheralBusClockFrequency.h</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -308,8 +307,6 @@
         <logicalFolder name="I2C" displayName="I2C" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/I2C/I2C.c</itemPath>
           <itemPath>../src/x-io-PIC32-Library/I2C/I2C2.c</itemPath>
-          <itemPath>../src/x-io-PIC32-Library/I2C/I2CMessage.c</itemPath>
-          <itemPath>../src/x-io-PIC32-Library/I2C/I2CClientAddress.c</itemPath>
         </logicalFolder>
         <logicalFolder name="Pwm" displayName="Pwm" projectFiles="true">
           <itemPath>../src/x-io-PIC32-Library/Pwm/Pwm4.c</itemPath>

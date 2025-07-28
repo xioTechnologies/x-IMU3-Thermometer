@@ -18,9 +18,8 @@
 // Definitions
 
 /**
- * @brief FIFO structure. Structure members are used internally and must not
- * be accessed by the application except for initialisation.
- *
+ * @brief FIFO structure. All structure members are private except for
+ * initialisation.
  * Example:
  * @code
  * uint8_t data[1024];
@@ -28,11 +27,19 @@
  * @endcode
  */
 typedef struct {
-    uint8_t* data;
-    size_t dataSize;
-    size_t writeIndex;
-    size_t readIndex;
+    volatile uint8_t * const data;
+    const size_t dataSize;
+    volatile size_t writeIndex;
+    volatile size_t readIndex;
 } Fifo;
+
+/**
+ * @brief Result.
+ */
+typedef enum {
+    FifoResultOk,
+    FifoResultError,
+} FifoResult;
 
 //------------------------------------------------------------------------------
 // Inline functions
@@ -42,7 +49,7 @@ typedef struct {
  * @param fifo FIFO structure.
  * @return Number of bytes available in the buffer.
  */
-static inline __attribute__((always_inline)) size_t FifoGetReadAvailable(Fifo * const fifo) {
+static inline __attribute__((always_inline)) size_t FifoAvailableRead(Fifo * const fifo) {
     const size_t writeIndex = fifo->writeIndex; // avoid asynchronous hazard
     if (writeIndex < fifo->readIndex) {
         return fifo->dataSize - fifo->readIndex + writeIndex;
@@ -60,8 +67,13 @@ static inline __attribute__((always_inline)) size_t FifoGetReadAvailable(Fifo * 
  */
 static inline __attribute__((always_inline)) size_t FifoRead(Fifo * const fifo, void* const destination, size_t numberOfBytes) {
 
+    // Do nothing if no bytes available to read
+    const size_t bytesAvailable = FifoAvailableRead(fifo);
+    if (bytesAvailable == 0) {
+        return 0;
+    }
+
     // Limit number of bytes to number available
-    const size_t bytesAvailable = FifoGetReadAvailable(fifo);
     if (numberOfBytes > bytesAvailable) {
         numberOfBytes = bytesAvailable;
     }
@@ -69,12 +81,12 @@ static inline __attribute__((always_inline)) size_t FifoRead(Fifo * const fifo, 
     // Read data
     if ((fifo->readIndex + numberOfBytes) >= fifo->dataSize) {
         const size_t numberOfBytesBeforeWraparound = fifo->dataSize - fifo->readIndex;
-        memcpy(destination, &fifo->data[fifo->readIndex], numberOfBytesBeforeWraparound);
+        memcpy(destination, (void*) &fifo->data[fifo->readIndex], numberOfBytesBeforeWraparound);
         const size_t numberOfBytesAfterWraparound = numberOfBytes - numberOfBytesBeforeWraparound;
-        memcpy(&((uint8_t*) destination)[numberOfBytesBeforeWraparound], fifo->data, numberOfBytesAfterWraparound);
+        memcpy(&((uint8_t*) destination)[numberOfBytesBeforeWraparound], (void*) fifo->data, numberOfBytesAfterWraparound);
         fifo->readIndex = numberOfBytesAfterWraparound;
     } else {
-        memcpy(destination, &fifo->data[fifo->readIndex], numberOfBytes);
+        memcpy(destination, (void*) &fifo->data[fifo->readIndex], numberOfBytes);
         fifo->readIndex += numberOfBytes;
     }
     return numberOfBytes;
@@ -95,11 +107,11 @@ static inline __attribute__((always_inline)) uint8_t FifoReadByte(Fifo * const f
 }
 
 /**
- * @brief Returns the space available to write in the FIFO.
+ * @brief Returns the space available to write to the FIFO.
  * @param fifo FIFO structure.
  * @return Space available in the buffer.
  */
-static inline __attribute__((always_inline)) size_t FifoGetWriteAvailable(Fifo * const fifo) {
+static inline __attribute__((always_inline)) size_t FifoAvailableWrite(Fifo * const fifo) {
     const size_t readIndex = fifo->readIndex; // avoid asynchronous hazard
     if (fifo->writeIndex < readIndex) {
         return (fifo->dataSize - 1) - (fifo->dataSize - readIndex) - fifo->writeIndex;
@@ -113,37 +125,40 @@ static inline __attribute__((always_inline)) size_t FifoGetWriteAvailable(Fifo *
  * @param fifo FIFO structure.
  * @param data Data.
  * @param numberOfBytes Number of bytes.
+ * @return Result.
  */
-static inline __attribute__((always_inline)) void FifoWrite(Fifo * const fifo, const void* const data, const size_t numberOfBytes) {
+static inline __attribute__((always_inline)) FifoResult FifoWrite(Fifo * const fifo, const void* const data, const size_t numberOfBytes) {
 
     // Do nothing if not enough space available
-    if (numberOfBytes > FifoGetWriteAvailable(fifo)) {
-        return;
+    if (numberOfBytes > FifoAvailableWrite(fifo)) {
+        return FifoResultError;
     }
 
     // Write data
     if ((fifo->writeIndex + numberOfBytes) >= fifo->dataSize) {
         const size_t numberOfBytesBeforeWraparound = fifo->dataSize - fifo->writeIndex;
-        memcpy(&fifo->data[fifo->writeIndex], data, numberOfBytesBeforeWraparound);
+        memcpy((void*) &fifo->data[fifo->writeIndex], data, numberOfBytesBeforeWraparound);
         const size_t numberOfBytesAfterWraparound = numberOfBytes - numberOfBytesBeforeWraparound;
-        memcpy(fifo->data, &((uint8_t*) data)[numberOfBytesBeforeWraparound], numberOfBytesAfterWraparound);
+        memcpy((void*) fifo->data, &((uint8_t*) data)[numberOfBytesBeforeWraparound], numberOfBytesAfterWraparound);
         fifo->writeIndex = numberOfBytesAfterWraparound;
     } else {
-        memcpy(&fifo->data[fifo->writeIndex], data, numberOfBytes);
+        memcpy((void*) &fifo->data[fifo->writeIndex], data, numberOfBytes);
         fifo->writeIndex += numberOfBytes;
     }
+    return FifoResultOk;
 }
 
 /**
  * @brief Writes a byte to the FIFO.
  * @param fifo FIFO structure.
  * @param byte Byte.
+ * @return Result.
  */
-static inline __attribute__((always_inline)) void FifoWriteByte(Fifo * const fifo, const uint8_t byte) {
+static inline __attribute__((always_inline)) FifoResult FifoWriteByte(Fifo * const fifo, const uint8_t byte) {
 
     // Do nothing if not enough space available
-    if (FifoGetWriteAvailable(fifo) == 0) {
-        return;
+    if (FifoAvailableWrite(fifo) == 0) {
+        return FifoResultError;
     }
 
     // Write byte
@@ -151,6 +166,7 @@ static inline __attribute__((always_inline)) void FifoWriteByte(Fifo * const fif
     if (++fifo->writeIndex >= fifo->dataSize) {
         fifo->writeIndex = 0;
     }
+    return FifoResultOk;
 }
 
 /**

@@ -11,10 +11,13 @@
 // Includes
 
 #include "I2C.h"
-#include "I2CClientAddress.h"
-#include "I2CMessage.h"
 #include <stdbool.h>
 #include <stdint.h>
+
+//------------------------------------------------------------------------------
+// Variable declarations
+
+extern const I2C i2c2;
 
 //------------------------------------------------------------------------------
 // Function declarations
@@ -25,9 +28,9 @@ void I2C2Start(void);
 void I2C2RepeatedStart(void);
 void I2C2Stop(void);
 bool I2C2Send(const uint8_t byte);
+bool I2C2SendAddressRead(const uint8_t address);
+bool I2C2SendAddressWrite(const uint8_t address);
 uint8_t I2C2Receive(const bool ack);
-void I2C2BeginMessage(I2CMessage * const message_);
-bool I2C2MessageInProgress(void);
 
 #endif
 

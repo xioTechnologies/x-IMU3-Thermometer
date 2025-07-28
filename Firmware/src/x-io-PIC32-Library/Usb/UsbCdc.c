@@ -7,8 +7,8 @@
 //------------------------------------------------------------------------------
 // Includes
 
+#include "Config.h"
 #include "definitions.h"
-#include "Fifo.h"
 #include "UsbCdc.h"
 
 //------------------------------------------------------------------------------
@@ -22,14 +22,15 @@ static void WriteTasks(void);
 //------------------------------------------------------------------------------
 // Variables
 
-static USB_DEVICE_HANDLE usbDeviceHandle = USB_DEVICE_HANDLE_INVALID;
-static bool hostConnected;
-static uint8_t __attribute__((coherent)) readRequestData[512]; // must be declared __attribute__((coherent)) for PIC32MZ devices
-static bool readInProgress;
-static bool writeInProgress;
-static uint8_t readData[4096];
+static volatile USB_DEVICE_HANDLE usbDeviceHandle = USB_DEVICE_HANDLE_INVALID;
+static volatile bool hostConnected;
+static volatile bool portOpen;
+static volatile uint8_t __attribute__((coherent)) readRequestData[512]; // must be declared __attribute__((coherent)) for PIC32MZ devices
+static volatile bool readInProgress;
+static volatile bool writeInProgress;
+static uint8_t readData[USB_CDC_READ_BUFFER_SIZE];
 static Fifo readFifo = {.data = readData, .dataSize = sizeof (readData)};
-static uint8_t writeData[4096];
+static uint8_t writeData[USB_CDC_WRITE_BUFFER_SIZE];
 static Fifo writeFifo = {.data = writeData, .dataSize = sizeof (writeData)};
 
 //------------------------------------------------------------------------------
@@ -65,6 +66,7 @@ static void APP_USBDeviceEventHandler(USB_DEVICE_EVENT event, void * eventData, 
         case USB_DEVICE_EVENT_SUSPENDED:
         case USB_DEVICE_EVENT_DECONFIGURED:
             hostConnected = false;
+            portOpen = false;
             readInProgress = false;
             writeInProgress = false;
             break;
@@ -80,6 +82,7 @@ static void APP_USBDeviceEventHandler(USB_DEVICE_EVENT event, void * eventData, 
         case USB_DEVICE_EVENT_POWER_REMOVED:
             USB_DEVICE_Detach(usbDeviceHandle);
             hostConnected = false;
+            portOpen = false;
             readInProgress = false;
             writeInProgress = false;
             break;
@@ -106,6 +109,7 @@ static void APP_USBDeviceCDCEventHandler(USB_DEVICE_CDC_INDEX index, USB_DEVICE_
             USB_DEVICE_ControlReceive(usbDeviceHandle, (uint8_t *) & usbCdcLineCoding, sizeof (usbCdcLineCoding));
             break;
         case USB_DEVICE_CDC_EVENT_SET_CONTROL_LINE_STATE:
+            portOpen = ((USB_CDC_CONTROL_LINE_STATE *) pData)->dtr == 1;
             USB_DEVICE_ControlStatus(usbDeviceHandle, USB_DEVICE_CONTROL_STATUS_OK);
             break;
         case USB_DEVICE_CDC_EVENT_SEND_BREAK:
@@ -114,7 +118,7 @@ static void APP_USBDeviceCDCEventHandler(USB_DEVICE_CDC_INDEX index, USB_DEVICE_
         case USB_DEVICE_CDC_EVENT_READ_COMPLETE:
             if (readInProgress) { // prevent unexpected read event for PIC32MZ devices when host reconnected
                 const size_t numberOfBytes = ((USB_DEVICE_CDC_EVENT_DATA_READ_COMPLETE*) pData)->length;
-                FifoWrite(&readFifo, readRequestData, numberOfBytes);
+                FifoWrite(&readFifo, (void*) readRequestData, numberOfBytes);
                 readInProgress = false;
             }
             break;
@@ -142,7 +146,7 @@ static void ReadTasks(void) {
     // Schedule read
     readInProgress = true;
     static USB_DEVICE_CDC_TRANSFER_HANDLE usbDeviceCdcTransferHandle = USB_DEVICE_CDC_TRANSFER_HANDLE_INVALID;
-    const USB_DEVICE_CDC_RESULT usbDeviceCdcResult = USB_DEVICE_CDC_Read(USB_DEVICE_CDC_INDEX_0, &usbDeviceCdcTransferHandle, readRequestData, sizeof (readRequestData));
+    const USB_DEVICE_CDC_RESULT usbDeviceCdcResult = USB_DEVICE_CDC_Read(USB_DEVICE_CDC_INDEX_0, &usbDeviceCdcTransferHandle, (void*) readRequestData, sizeof (readRequestData));
     if (usbDeviceCdcResult != USB_DEVICE_CDC_RESULT_OK) {
         readInProgress = false;
         return;
@@ -160,7 +164,7 @@ static void WriteTasks(void) {
     }
 
     // Do nothing if no data available
-    if (FifoGetReadAvailable(&writeFifo) == 0) {
+    if (FifoAvailableRead(&writeFifo) == 0) {
         return;
     }
 
@@ -187,11 +191,19 @@ bool UsbCdcHostConnected(void) {
 }
 
 /**
+ * @brief Returns true if the port is open.
+ * @return True if the port is open.
+ */
+bool UsbCdcPortOpen(void) {
+    return portOpen;
+}
+
+/**
  * @brief Returns the number of bytes available in the read buffer.
  * @return Number of bytes available in the read buffer.
  */
-size_t UsbCdcGetReadAvailable(void) {
-    return FifoGetReadAvailable(&readFifo);
+size_t UsbCdcAvailableRead(void) {
+    return FifoAvailableRead(&readFifo);
 }
 
 /**
@@ -217,25 +229,27 @@ uint8_t UsbCdcReadByte(void) {
  * @brief Returns the space available in the write buffer.
  * @return Space available in the write buffer.
  */
-size_t UsbCdcGetWriteAvailable(void) {
-    return FifoGetWriteAvailable(&writeFifo);
+size_t UsbCdcAvailableWrite(void) {
+    return FifoAvailableWrite(&writeFifo);
 }
 
 /**
  * @brief Writes data to the write buffer.
  * @param data Data.
  * @param numberOfBytes Number of bytes.
+ * @return Result.
  */
-void UsbCdcWrite(const void* const data, const size_t numberOfBytes) {
-    FifoWrite(&writeFifo, data, numberOfBytes);
+FifoResult UsbCdcWrite(const void* const data, const size_t numberOfBytes) {
+    return FifoWrite(&writeFifo, data, numberOfBytes);
 }
 
 /**
  * @brief Writes a byte to the write buffer.
  * @param byte Byte.
+ * @return Result.
  */
-void UsbCdcWriteByte(const uint8_t byte) {
-    FifoWriteByte(&writeFifo, byte);
+FifoResult UsbCdcWriteByte(const uint8_t byte) {
+    return FifoWriteByte(&writeFifo, byte);
 }
 
 //------------------------------------------------------------------------------
