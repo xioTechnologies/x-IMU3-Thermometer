@@ -86,12 +86,12 @@ void __attribute__((used)) __ISR(_USB_VECTOR, ipl1SOFT) USB_Handler (void)
 
 void __attribute__((used)) __ISR(_UART2_RX_VECTOR, ipl1SOFT) UART2_RX_Handler (void)
 {
-    Uart2RXInterruptHandler();
+    Uart2RxInterruptHandler();
 }
 
 void __attribute__((used)) __ISR(_UART2_TX_VECTOR, ipl1SOFT) UART2_TX_Handler (void)
 {
-    Uart2TXInterruptHandler();
+    Uart2TxInterruptHandler();
 }
 
 void __attribute__((used)) __ISR(_CCT1_VECTOR, ipl7SRS) CCT1_Handler (void)

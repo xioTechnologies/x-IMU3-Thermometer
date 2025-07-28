@@ -58,8 +58,8 @@
 // *****************************************************************************
 void DRV_USBFS_USB_Handler( void );
 
-void Uart2RXInterruptHandler(void);
-void Uart2TXInterruptHandler(void);
+void Uart2RxInterruptHandler(void);
+void Uart2TxInterruptHandler(void);
 void Cct1InterruptHandler(void);
 void Cct2InterruptHandler(void);
 

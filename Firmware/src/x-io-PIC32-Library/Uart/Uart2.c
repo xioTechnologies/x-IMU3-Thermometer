@@ -7,24 +7,24 @@
 //------------------------------------------------------------------------------
 // Includes
 
+#include "Config.h"
 #include "definitions.h"
-#include "Fifo.h"
 #include <stdint.h>
 #include "Uart2.h"
 
 //------------------------------------------------------------------------------
 // Function declarations
 
-static inline __attribute__((always_inline)) void RXInterruptTasks(void);
-static inline __attribute__((always_inline)) void TXInterruptTasks(void);
+static inline __attribute__((always_inline)) void RxInterruptTasks(void);
+static inline __attribute__((always_inline)) void TxInterruptTasks(void);
 
 //------------------------------------------------------------------------------
 // Variables
 
 static bool receiveBufferOverrun;
-static uint8_t readData[4096];
+static uint8_t readData[UART2_READ_BUFFER_SIZE];
 static Fifo readFifo = {.data = readData, .dataSize = sizeof (readData)};
-static uint8_t writeData[4096];
+static uint8_t writeData[UART2_WRITE_BUFFER_SIZE];
 static Fifo writeFifo = {.data = writeData, .dataSize = sizeof (writeData)};
 
 //------------------------------------------------------------------------------
@@ -49,16 +49,16 @@ void Uart2Initialise(const UartSettings * const settings) {
     }
     U2MODEbits.PDSEL = settings->parityAndData;
     U2MODEbits.STSEL = settings->stopBits;
-    U2MODEbits.BRGH = 1; // High-Speed mode - 4x baud clock enabled
-    U2STAbits.URXISEL = 0b01; // Interrupt flag bit is asserted while receive buffer is 1/2 or more full (i.e., has 4 or more data characters)
-    U2STAbits.UTXISEL = 0b10; // Interrupt is generated and asserted while the transmit buffer is empty
+    U2MODEbits.BRGH = 1; // high-Speed mode - 4x baud clock enabled
+    U2STAbits.URXISEL = 0b01; // interrupt flag bit is asserted while receive buffer is 1/2 or more full (i.e., has 4 or more data characters)
+    U2STAbits.UTXISEL = 0b10; // interrupt is generated and asserted while the transmit buffer is empty
     U2STAbits.URXEN = 1; // UARTx receiver is enabled. UxRX pin is controlled by UARTx (if ON = 1)
     U2STAbits.UTXEN = 1; // UARTx transmitter is enabled. UxTX pin is controlled by UARTx (if ON = 1)
     U2BRG = UartCalculateUxbrg(settings->baudRate);
     U2MODEbits.ON = 1; // UARTx is enabled. UARTx pins are controlled by UARTx as defined by UEN<1:0> and UTXEN control bits
 
-    // Configure interrupts
-    EVIC_SourceEnable(INT_SOURCE_UART2_RX); // enable RX interrupt only
+    // Enable interrupts
+    EVIC_SourceEnable(INT_SOURCE_UART2_RX);
 }
 
 /**
@@ -85,7 +85,7 @@ void Uart2Deinitialise(void) {
  * @brief Returns the number of bytes available in the read buffer.
  * @return Number of bytes available in the read buffer.
  */
-size_t Uart2GetReadAvailable(void) {
+size_t Uart2AvailableRead(void) {
 
     // Trigger RX interrupt if hardware receive buffer not empty
     if (U2STAbits.URXDA == 1) {
@@ -100,7 +100,7 @@ size_t Uart2GetReadAvailable(void) {
     }
 
     // Return number of bytes
-    return FifoGetReadAvailable(&readFifo);
+    return FifoAvailableRead(&readFifo);
 }
 
 /**
@@ -110,7 +110,7 @@ size_t Uart2GetReadAvailable(void) {
  * @return Number of bytes read.
  */
 size_t Uart2Read(void* const destination, size_t numberOfBytes) {
-    Uart2GetReadAvailable(); // process hardware receive buffer
+    Uart2AvailableRead(); // process hardware receive buffer
     return FifoRead(&readFifo, destination, numberOfBytes);
 }
 
@@ -127,27 +127,31 @@ uint8_t Uart2ReadByte(void) {
  * @brief Returns the space available in the write buffer.
  * @return Space available in the write buffer.
  */
-size_t Uart2GetWriteAvailable(void) {
-    return FifoGetWriteAvailable(&writeFifo);
+size_t Uart2AvailableWrite(void) {
+    return FifoAvailableWrite(&writeFifo);
 }
 
 /**
  * @brief Writes data to the write buffer.
  * @param data Data.
  * @param numberOfBytes Number of bytes.
+ * @return Result.
  */
-void Uart2Write(const void* const data, const size_t numberOfBytes) {
-    FifoWrite(&writeFifo, data, numberOfBytes);
+FifoResult Uart2Write(const void* const data, const size_t numberOfBytes) {
+    const FifoResult result = FifoWrite(&writeFifo, data, numberOfBytes);
     EVIC_SourceEnable(INT_SOURCE_UART2_TX);
+    return result;
 }
 
 /**
  * @brief Writes a byte to the write buffer.
  * @param byte Byte.
+ * @return Result.
  */
-void Uart2WriteByte(const uint8_t byte) {
-    FifoWriteByte(&writeFifo, byte);
+FifoResult Uart2WriteByte(const uint8_t byte) {
+    const FifoResult result = FifoWriteByte(&writeFifo, byte);
     EVIC_SourceEnable(INT_SOURCE_UART2_TX);
+    return result;
 }
 
 /**
@@ -155,7 +159,7 @@ void Uart2WriteByte(const uint8_t byte) {
  */
 void Uart2ClearReadBuffer(void) {
     FifoClear(&readFifo);
-    Uart2HasReceiveBufferOverrun();
+    Uart2ReceiveBufferOverrun();
 }
 
 /**
@@ -170,7 +174,7 @@ void Uart2ClearWriteBuffer(void) {
  * function will reset the flag.
  * @return True if the hardware receive buffer has overrun.
  */
-bool Uart2HasReceiveBufferOverrun(void) {
+bool Uart2ReceiveBufferOverrun(void) {
     if (receiveBufferOverrun) {
         receiveBufferOverrun = false;
         return true;
@@ -196,7 +200,7 @@ void Uart2InterruptHandler(void) {
 
     // RX interrupt
     if (EVIC_SourceStatusGet(INT_SOURCE_UART2_RX)) {
-        RXInterruptTasks();
+        RxInterruptTasks();
     }
 
     // TX interrupt
@@ -204,26 +208,26 @@ void Uart2InterruptHandler(void) {
         return; // return if TX interrupt disabled because TX interrupt flag will remain set while the transmit buffer is empty
     }
     if (EVIC_SourceStatusGet(INT_SOURCE_UART2_TX)) {
-        TXInterruptTasks();
+        TxInterruptTasks();
     }
 }
 
 #else
 
 /**
- * @brief UART RX interrupt handler. This function should be called by the
- * ISR implementation generated by MPLAB Harmony.
+ * @brief UART RX interrupt handler. This function should be called by the ISR
+ * implementation generated by MPLAB Harmony.
  */
-void Uart2RXInterruptHandler(void) {
-    RXInterruptTasks();
+void Uart2RxInterruptHandler(void) {
+    RxInterruptTasks();
 }
 
 /**
- * @brief UART TX interrupt handler. This function should be called by the
- * ISR implementation generated by MPLAB Harmony.
+ * @brief UART TX interrupt handler. This function should be called by the ISR
+ * implementation generated by MPLAB Harmony.
  */
-void Uart2TXInterruptHandler(void) {
-    TXInterruptTasks();
+void Uart2TxInterruptHandler(void) {
+    TxInterruptTasks();
 }
 
 #endif
@@ -231,9 +235,9 @@ void Uart2TXInterruptHandler(void) {
 /**
  * @brief UART RX interrupt tasks.
  */
-static inline __attribute__((always_inline)) void RXInterruptTasks(void) {
-    while (U2STAbits.URXDA == 1) { // repeat while data available in receive buffer
-        if (FifoGetWriteAvailable(&readFifo) == 0) { // if read buffer full
+static inline __attribute__((always_inline)) void RxInterruptTasks(void) {
+    while (U2STAbits.URXDA == 1) { // while data available in receive buffer
+        if (FifoAvailableWrite(&readFifo) == 0) { // if read buffer full
             EVIC_SourceDisable(INT_SOURCE_UART2_RX);
             break;
         } else {
@@ -246,11 +250,11 @@ static inline __attribute__((always_inline)) void RXInterruptTasks(void) {
 /**
  * @brief UART TX interrupt tasks.
  */
-static inline __attribute__((always_inline)) void TXInterruptTasks(void) {
+static inline __attribute__((always_inline)) void TxInterruptTasks(void) {
     EVIC_SourceDisable(INT_SOURCE_UART2_TX); // disable TX interrupt to avoid nested interrupt
     EVIC_SourceStatusClear(INT_SOURCE_UART2_TX);
-    while (U2STAbits.UTXBF == 0) { // repeat while transmit buffer not full
-        if (FifoGetReadAvailable(&writeFifo) == 0) { // if write buffer empty
+    while (U2STAbits.UTXBF == 0) { // while transmit buffer not full
+        if (FifoAvailableRead(&writeFifo) == 0) { // if write buffer empty
             return;
         }
         U2TXREG = FifoReadByte(&writeFifo);

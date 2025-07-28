@@ -12,7 +12,7 @@
 //------------------------------------------------------------------------------
 // Definitions
 
-#define I2C_SLAVE_ADDRESS (0x48)
+#define I2C_ADDRESS (0x48)
 
 //------------------------------------------------------------------------------
 // Function declarations
@@ -55,10 +55,10 @@ uint32_t ThermometerReadUniqueID(void) {
  */
 static uint16_t ReadRegister(const uint8_t address) {
     I2C2Start();
-    I2C2Send(I2CClientAddressWrite(I2C_SLAVE_ADDRESS));
+    I2C2Send(I2CAddressWrite(I2C_ADDRESS));
     I2C2Send(address);
     I2C2RepeatedStart();
-    I2C2Send(I2CClientAddressRead(I2C_SLAVE_ADDRESS));
+    I2C2Send(I2CAddressRead(I2C_ADDRESS));
     const uint8_t msb = I2C2Receive(true);
     const uint8_t lsb = I2C2Receive(false);
     I2C2Stop();
