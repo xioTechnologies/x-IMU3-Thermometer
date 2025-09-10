@@ -82,7 +82,7 @@ void UsbWrite(const void* const data, const size_t numberOfBytes, void* const co
  * @param context Context.
  */
 static void Ping(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
-    if (Ximu3CommandParseNull(value, response) != 0) {
+    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
         return;
     }
     char serialNumber[16];
@@ -97,7 +97,7 @@ static void Ping(const char* * const value, Ximu3CommandResponse * const respons
  * @param context Context.
  */
 void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
-    if (Ximu3CommandParseNull(value, response) != 0) {
+    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
         return;
     }
     LedBlink();
@@ -111,7 +111,7 @@ void Blink(const char* * const value, Ximu3CommandResponse * const response, voi
  * @param context Context.
  */
 void Strobe(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
-    if (Ximu3CommandParseNull(value, response) != 0) {
+    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
         return;
     }
     LedStrobe();
