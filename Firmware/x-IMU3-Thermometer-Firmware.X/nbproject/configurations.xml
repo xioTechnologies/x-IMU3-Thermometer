@@ -251,8 +251,26 @@
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="true">
+      <logicalFolder name="x-IMU3-Thermometer-Firmware_default"
+                     displayName="x-IMU3-Thermometer-Firmware_default"
+                     projectFiles="true">
+        <logicalFolder name="components" displayName="components" projectFiles="true">
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/HarmonyCore.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/usb_device.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/usb_device_cdc.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/core.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/dfp.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/drv_usbfs_v1.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/usb_device_cdc_0.yml</itemPath>
+          <itemPath>x-IMU3-Thermometer-Firmware_default/components/rcon.yml</itemPath>
+        </logicalFolder>
+        <itemPath>x-IMU3-Thermometer-Firmware_default/mcc-config.mc4</itemPath>
+      </logicalFolder>
       <itemPath>Makefile</itemPath>
-      <itemPath>x-IMU3-Thermometer-Firmware.mc3</itemPath>
+    </logicalFolder>
+    <logicalFolder name="LibraryFiles"
+                   displayName="LibraryFiles"
+                   projectFiles="true">
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
