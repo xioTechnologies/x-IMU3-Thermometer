@@ -23,9 +23,10 @@
 #include <stdlib.h>
 #include "Thermometer/Thermometer.h"
 #include "Timer/Timer.h"
+#include "Timestamp/Timestamp.h"
 #include "Uart/Uart2.h"
 #include "Usb/UsbCdc.h"
-#include "Ximu3Device/x-IMU3-Device/Ximu3Data.h"
+#include "Ximu3Device/x-IMU3-Device/Ximu3.h"
 #include "Ximu3Device/Ximu3Device.h"
 
 //------------------------------------------------------------------------------
@@ -39,7 +40,7 @@ int main(void) {
 
     // Print start up message
     ResetCausePrint(ResetCauseGet());
-    printf("x-IMU3 Thermometer v1.2.0\n");
+    printf("x-IMU3 Thermometer v1.3.0\n");
 
     // Initialise modules
     TimerInitialise();
@@ -57,7 +58,7 @@ int main(void) {
         // Send temperature
         if (PERIODIC_POLL(1.0f)) {
             const Ximu3DataTemperature data = {
-                .timestamp = TimerGetTicks64() / TIMER_TICKS_PER_MICROSECOND,
+                .timestamp = TimestampGet(),
                 .temperature = ThermometerReadTemperature(),
             };
             char message[256];

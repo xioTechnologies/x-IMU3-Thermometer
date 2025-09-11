@@ -200,6 +200,9 @@
       <logicalFolder name="Thermometer" displayName="Thermometer" projectFiles="true">
         <itemPath>../src/Thermometer/Thermometer.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="Timestamp" displayName="Timestamp" projectFiles="true">
+        <itemPath>../src/Timestamp/Timestamp.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="x-io-PIC32-Library"
                      displayName="x-io-PIC32-Library"
                      projectFiles="true">
@@ -337,6 +340,9 @@
       </logicalFolder>
       <logicalFolder name="Thermometer" displayName="Thermometer" projectFiles="true">
         <itemPath>../src/Thermometer/Thermometer.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Timestamp" displayName="Timestamp" projectFiles="true">
+        <itemPath>../src/Timestamp/Timestamp.c</itemPath>
       </logicalFolder>
       <logicalFolder name="x-io-PIC32-Library"
                      displayName="x-io-PIC32-Library"

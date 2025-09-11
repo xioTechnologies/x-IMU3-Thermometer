@@ -8,9 +8,11 @@
 // Includes
 
 #include "Led/Led.h"
+#include <stdint.h>
 #include <stdio.h>
 #include "Thermometer/Thermometer.h"
 #include "Timer/Timer.h"
+#include "Timestamp/Timestamp.h"
 #include "Usb/UsbCdc.h"
 #include "x-IMU3-Device/Ximu3.h"
 
@@ -22,6 +24,8 @@ static void UsbWrite(const void* const data, const size_t numberOfBytes, void* c
 static void Ping(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Strobe(const char* * const value, Ximu3CommandResponse * const response, void* const context);
+static void Note(const char* * const value, Ximu3CommandResponse * const response, void* const context);
+static void Timestamp(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Error(const char* const error, void* const context);
 
 //------------------------------------------------------------------------------
@@ -34,6 +38,8 @@ static const Ximu3CommandMap commands[] = {
     {"ping", Ping},
     {"blink", Blink},
     {"strobe", Strobe},
+    {"note", Note},
+    {"timestamp", Timestamp},
 };
 static Ximu3CommandBridge bridge = {
     .interfaces = interfaces,
@@ -58,7 +64,7 @@ void Ximu3DeviceTasks(void) {
  * @brief Reads data from the read buffer.
  * @param destination Destination.
  * @param numberOfBytes Number of bytes.
- * @param context Context. 
+ * @param context Context.
  * @return Number of bytes read.
  */
 size_t UsbRead(void* const destination, size_t numberOfBytes, void* const context) {
@@ -69,7 +75,7 @@ size_t UsbRead(void* const destination, size_t numberOfBytes, void* const contex
  * @brief Writes data to the write buffer.
  * @param data Data.
  * @param numberOfBytes Number of bytes.
- * @param context Context. 
+ * @param context Context.
  */
 void UsbWrite(const void* const data, const size_t numberOfBytes, void* const context) {
     UsbCdcWrite(data, numberOfBytes);
@@ -115,6 +121,42 @@ void Strobe(const char* * const value, Ximu3CommandResponse * const response, vo
         return;
     }
     LedStrobe();
+    Ximu3CommandRespond(response);
+}
+
+/**
+ * @brief Note command.
+ * @param value Value.
+ * @param response Response.
+ * @param context Context.
+ */
+static void Note(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
+    char string[XIMU3_VALUE_SIZE];
+    if (Ximu3CommandParseString(value, response, string, sizeof (string), NULL) != Ximu3ResultOk) {
+        return;
+    }
+    const Ximu3DataNotification data = {
+        .timestamp = TimestampGet(),
+        .string = string,
+    };
+    char message[256];
+    const int numberOfBytes = Ximu3DataNotificationAscii(message, sizeof (message), &data);
+    UsbCdcWrite(message, numberOfBytes);
+    Ximu3CommandRespond(response);
+}
+
+/**
+ * @brief Timestamp command.
+ * @param value Value.
+ * @param response Response.
+ * @param context Context.
+ */
+void Timestamp(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
+    uint64_t timestamp;
+    if (Ximu3CommandParseNumberU64(value, response, &timestamp) != Ximu3ResultOk) {
+        return;
+    }
+    TimestampSet(timestamp);
     Ximu3CommandRespond(response);
 }
 
