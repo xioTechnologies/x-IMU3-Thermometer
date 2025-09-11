@@ -76,6 +76,8 @@ JsonResult JsonParseString(const char **const json, char *const destination, con
 
 JsonResult JsonParseNumber(const char **const json, float *const number);
 
+JsonResult JsonParseNumberRaw(const char **const json, char *const destination, const size_t destinationSize);
+
 JsonResult JsonParseBoolean(const char **const json, bool *const boolean);
 
 JsonResult JsonParseNull(const char **const json);

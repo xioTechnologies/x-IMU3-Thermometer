@@ -23,7 +23,7 @@ static JsonResult ParseEscapeSequence(const char **const json, char *const desti
 
 static JsonResult ParseHexEscapeSequence(const char **const json, char *const destination, size_t *const index);
 
-static void WriteToDestination(char *const destination, size_t *const index, const char character);
+static void WriteChar(char *const destination, size_t *const index, const char character);
 
 static JsonResult ParseValue(const char **const json, const bool print, int *const indent);
 
@@ -248,7 +248,7 @@ JsonResult JsonParseString(const char **const json, char *const destination, con
             return JsonResultMissingStringEnd;
         }
         if ((**json >= 0) && (**json < 0x20)) {
-            return JsonResultInvalidStringCharacter; // control charcaters must be escaped
+            return JsonResultInvalidStringCharacter; // control characters must be escaped
         }
         if (**json == '\\') {
             result = ParseEscapeSequence(json, destination, &index);
@@ -259,13 +259,13 @@ JsonResult JsonParseString(const char **const json, char *const destination, con
         }
         if (**json == '\"') {
             (*json)++;
-            WriteToDestination(destination, &index, '\0');
+            WriteChar(destination, &index, '\0');
             if (numberOfBytes != NULL) {
                 *numberOfBytes = index;
             }
             return JsonResultOk;
         }
-        WriteToDestination(destination, &index, *(*json)++);
+        WriteChar(destination, &index, *(*json)++);
     }
 }
 
@@ -280,28 +280,28 @@ JsonResult JsonParseString(const char **const json, char *const destination, con
 static JsonResult ParseEscapeSequence(const char **const json, char *const destination, size_t *const index) {
     switch (*(*json + 1)) {
         case '\"':
-            WriteToDestination(destination, index, '"');
+            WriteChar(destination, index, '"');
             break;
         case '\\':
-            WriteToDestination(destination, index, '\\');
+            WriteChar(destination, index, '\\');
             break;
         case '/':
-            WriteToDestination(destination, index, '/');
+            WriteChar(destination, index, '/');
             break;
         case 'b':
-            WriteToDestination(destination, index, '\b');
+            WriteChar(destination, index, '\b');
             break;
         case 'f':
-            WriteToDestination(destination, index, '\f');
+            WriteChar(destination, index, '\f');
             break;
         case 'n':
-            WriteToDestination(destination, index, '\n');
+            WriteChar(destination, index, '\n');
             break;
         case 'r':
-            WriteToDestination(destination, index, '\r');
+            WriteChar(destination, index, '\r');
             break;
         case 't':
-            WriteToDestination(destination, index, '\t');
+            WriteChar(destination, index, '\t');
             break;
         case 'u':
             return ParseHexEscapeSequence(json, destination, index);
@@ -339,19 +339,19 @@ static JsonResult ParseHexEscapeSequence(const char **const json, char *const de
     if (sscanf(string, "%x", &value) != 1) {
         return JsonResultUnableToParseStringHexEscapeSequence;
     }
-    WriteToDestination(destination, index, (char) value);
+    WriteChar(destination, index, (char) value);
     (*json) += 6;
     return JsonResultOk;
 }
 
 /**
- * @brief Writes character to destination and increments index, if destination is
- * not NULL.
+ * @brief Writes character to destination and increments index, if destination
+ * is not NULL.
  * @param destination Destination.
  * @param index Index.
  * @param character Character.
  */
-static void WriteToDestination(char *const destination, size_t *const index, const char character) {
+static void WriteChar(char *const destination, size_t *const index, const char character) {
     if (destination != NULL) {
         destination[(*index)++] = character;
     }
@@ -365,6 +365,32 @@ static void WriteToDestination(char *const destination, size_t *const index, con
  * @return Result.
  */
 JsonResult JsonParseNumber(const char **const json, float *const number) {
+    // Parse raw number
+    if (number == NULL) {
+        return JsonParseNumberRaw(json, NULL, 0);
+    }
+    char string[32];
+    const JsonResult result = JsonParseNumberRaw(json, string, sizeof(string));
+    if (result != JsonResultOk) {
+        return result;
+    }
+
+    // Convert raw number to float
+    if (sscanf(string, "%f", number) != 1) {
+        return JsonResultUnableToParseNumber;
+    }
+    return JsonResultOk;
+}
+
+/**
+ * @brief Parses raw number string. The JSON pointer is advanced to the first
+ * character after the number.
+ * @param json JSON pointer.
+ * @param destination Destination. NULL if not required.
+ * @param destinationSize Destination size.
+ * @return Result.
+ */
+JsonResult JsonParseNumberRaw(const char **const json, char *const destination, const size_t destinationSize) {
     // Check type
     const JsonResult result = CheckType(json, JsonTypeNumber);
     if (result != JsonResultOk) {
@@ -418,17 +444,13 @@ JsonResult JsonParseNumber(const char **const json, float *const number) {
         jsonCopy++;
     }
 
-    // Read number string
-    if (number != NULL) {
-        char string[32];
-        const size_t numberOfBytes = jsonCopy - *json;
-        if (numberOfBytes >= sizeof(string)) {
+    // Copy raw number
+    if (destination != NULL) {
+        const size_t numberOfBytes = 1 + jsonCopy - *json;
+        if (numberOfBytes >= destinationSize) {
             return JsonResultNumberTooLong;
         }
-        snprintf(string, sizeof(string), "%s", *json);
-        if (sscanf(string, "%f", number) != 1) {
-            return JsonResultUnableToParseNumber;
-        }
+        snprintf(destination, numberOfBytes, "%s", *json);
     }
     *json = jsonCopy;
     return JsonResultOk;
