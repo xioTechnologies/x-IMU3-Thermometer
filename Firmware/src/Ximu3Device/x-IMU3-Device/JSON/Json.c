@@ -1,7 +1,7 @@
 /**
  * @file Json.c
  * @author Seb Madgwick
- * @brief Library for parsing of JSON strings.
+ * @brief Library for parsing JSON strings.
  */
 
 //------------------------------------------------------------------------------
@@ -15,7 +15,7 @@
 //------------------------------------------------------------------------------
 // Function declarations
 
-static void SkipWhiteSpace(const char **const json);
+static void SkipWhitespace(const char **const json);
 
 static JsonResult CheckType(const char **const json, const JsonType expectedType);
 
@@ -35,13 +35,14 @@ static JsonResult ParseArray(const char **const json, const bool print, int *con
 // Functions
 
 /**
- * @brief Parses value type. The JSON pointer is not modified.
+ * @brief Parses the value type. The JSON pointer is advanced to the first
+ * non-whitespace character.
  * @param json JSON pointer.
  * @param type Type.
  * @return Result.
  */
 JsonResult JsonParseType(const char **const json, JsonType *const type) {
-    SkipWhiteSpace(json);
+    SkipWhitespace(json);
     switch (**json) {
         case '"':
             *type = JsonTypeString;
@@ -81,7 +82,7 @@ JsonResult JsonParseType(const char **const json, JsonType *const type) {
  * @brief Advances the JSON pointer to the first non-whitespace character.
  * @param json JSON pointer.
  */
-static void SkipWhiteSpace(const char **const json) {
+static void SkipWhitespace(const char **const json) {
     while (true) {
         switch (**json) {
             case ' ':
@@ -98,7 +99,7 @@ static void SkipWhiteSpace(const char **const json) {
 
 /**
  * @brief Checks that the type matches the expected type. The JSON pointer is
- * not modified.
+ * advanced to the first non-whitespace character.
  * @param json JSON pointer.
  * @param expectedType Expected type.
  * @return Result.
@@ -117,7 +118,7 @@ static JsonResult CheckType(const char **const json, const JsonType expectedType
 
 /**
  * @brief Parses an object start. The JSON pointer is advanced to the first
- * non-whitespace character after the object start.
+ * character after the object start.
  * @param json JSON pointer.
  * @return Result.
  */
@@ -127,7 +128,6 @@ JsonResult JsonParseObjectStart(const char **const json) {
         return result;
     }
     (*json)++;
-    SkipWhiteSpace(json);
     return JsonResultOk;
 }
 
@@ -138,7 +138,7 @@ JsonResult JsonParseObjectStart(const char **const json) {
  * @return Result.
  */
 JsonResult JsonParseObjectEnd(const char **const json) {
-    SkipWhiteSpace(json);
+    SkipWhitespace(json);
     if (**json != '}') {
         return JsonResultMissingObjectEnd;
     }
@@ -148,7 +148,7 @@ JsonResult JsonParseObjectEnd(const char **const json) {
 
 /**
  * @brief Parses an array start. The JSON pointer is advanced to the first
- * non-whitespace character after the object start.
+ * character after the array start.
  * @param json JSON pointer.
  * @return Result.
  */
@@ -158,7 +158,6 @@ JsonResult JsonParseArrayStart(const char **const json) {
         return result;
     }
     (*json)++;
-    SkipWhiteSpace(json);
     return JsonResultOk;
 }
 
@@ -169,7 +168,7 @@ JsonResult JsonParseArrayStart(const char **const json) {
  * @return Result.
  */
 JsonResult JsonParseArrayEnd(const char **const json) {
-    SkipWhiteSpace(json);
+    SkipWhitespace(json);
     if (**json != ']') {
         return JsonResultMissingArrayEnd;
     }
@@ -184,7 +183,7 @@ JsonResult JsonParseArrayEnd(const char **const json) {
  * @return Result.
  */
 JsonResult JsonParseComma(const char **const json) {
-    SkipWhiteSpace(json);
+    SkipWhitespace(json);
     if (**json != ',') {
         return JsonResultMissingComma;
     }
@@ -194,7 +193,7 @@ JsonResult JsonParseComma(const char **const json) {
 
 /**
  * @brief Parses the key in a JSON object. The JSON pointer is advanced to the
- * character after the colon that separates the key/value pair.
+ * first character after the colon that separates the key/value pair.
  * @param json JSON pointer.
  * @param destination Destination. NULL if not required.
  * @param destinationSize Destination size.
@@ -213,7 +212,7 @@ JsonResult JsonParseKey(const char **const json, char *const destination, const 
     }
 
     // Parse colon
-    SkipWhiteSpace(json);
+    SkipWhitespace(json);
     if (**json != ':') {
         return JsonResultMissingColon;
     }
@@ -222,8 +221,8 @@ JsonResult JsonParseKey(const char **const json, char *const destination, const 
 }
 
 /**
- * @brief Parse string. The JSON pointer is advanced to the first
- * character after the string.
+ * @brief Parses a string. The JSON pointer is advanced to the first character
+ * after the string.
  * @param json JSON pointer.
  * @param destination Destination. NULL if not required.
  * @param destinationSize Destination size.
@@ -270,7 +269,7 @@ JsonResult JsonParseString(const char **const json, char *const destination, con
 }
 
 /**
- * @brief Parse escape sequence. The JSON pointer is advanced to the first
+ * @brief Parses an escape sequence. The JSON pointer is advanced to the first
  * character after the escape sequence.
  * @param json JSON pointer.
  * @param destination Destination.
@@ -313,7 +312,7 @@ static JsonResult ParseEscapeSequence(const char **const json, char *const desti
 }
 
 /**
- * @brief Parse hex escape sequence. The JSON pointer is advanced to the
+ * @brief Parses a hex escape sequence. The JSON pointer is advanced to the
  * first character after the hex escape sequence.
  * @param json JSON pointer.
  * @param destination Destination.
@@ -345,8 +344,8 @@ static JsonResult ParseHexEscapeSequence(const char **const json, char *const de
 }
 
 /**
- * @brief Writes character to destination and increments index, if destination
- * is not NULL.
+ * @brief Writes a character to destination and increments index, if
+ * destination is not NULL.
  * @param destination Destination.
  * @param index Index.
  * @param character Character.
@@ -358,7 +357,7 @@ static void WriteChar(char *const destination, size_t *const index, const char c
 }
 
 /**
- * @brief Parses number. The JSON pointer is advanced to the first character
+ * @brief Parses a number. The JSON pointer is advanced to the first character
  * after the number.
  * @param json JSON pointer.
  * @param number Number. NULL if not required.
@@ -383,7 +382,7 @@ JsonResult JsonParseNumber(const char **const json, float *const number) {
 }
 
 /**
- * @brief Parses raw number string. The JSON pointer is advanced to the first
+ * @brief Parses a raw number string. The JSON pointer is advanced to the first
  * character after the number.
  * @param json JSON pointer.
  * @param destination Destination. NULL if not required.
@@ -457,7 +456,7 @@ JsonResult JsonParseNumberRaw(const char **const json, char *const destination, 
 }
 
 /**
- * @brief Parses boolean. The JSON pointer is advanced to the first character
+ * @brief Parses a boolean. The JSON pointer is advanced to the first character
  * after the boolean.
  * @param json JSON pointer.
  * @param boolean Boolean. NULL if not required.
@@ -493,7 +492,7 @@ JsonResult JsonParseBoolean(const char **const json, bool *const boolean) {
 }
 
 /**
- * @brief Parses null. The JSON pointer is advanced to the first character
+ * @brief Parses a null. The JSON pointer is advanced to the first character
  * after the null.
  * @param json JSON pointer.
  * @return Result.
@@ -515,8 +514,8 @@ JsonResult JsonParseNull(const char **const json) {
 }
 
 /**
- * @brief Parses any JSON and discards data. The JSON pointer is advanced to
- * the first character after the JSON.
+ * @brief Parses any JSON and discards the data. The JSON pointer is advanced
+ * to the first character after the JSON.
  * @param json JSON pointer.
  * @return Result.
  */
@@ -537,8 +536,8 @@ void JsonPrint(const char *json_) {
 }
 
 /**
- * @brief Parses value and discards data. The JSON pointer is advanced to the
- * first character after the value.
+ * @brief Parses a value and discards the data. The JSON pointer is advanced to
+ * the first character after the value.
  * @param json JSON pointer.
  * @param print True to print.
  * @param indent Indent.
@@ -596,8 +595,8 @@ static JsonResult ParseValue(const char **const json, const bool print, int *con
 }
 
 /**
- * @brief Parses object and discards data. The JSON pointer is advanced to the
- * first character after the object.
+ * @brief Parses an object and discards data. The JSON pointer is advanced to
+ * the first character after the object.
  * @param json JSON pointer.
  * @param print True to print.
  * @param indent Indent.
@@ -620,8 +619,7 @@ static JsonResult ParseObject(const char **const json, const bool print, int *co
     (*indent)++;
     while (true) {
         // Parse key
-        char key[64];
-        result = JsonParseKey(json, key, sizeof(key));
+        result = JsonParseKey(json, NULL, 0);
         if (result != JsonResultOk) {
             return result;
         }
@@ -650,8 +648,8 @@ static JsonResult ParseObject(const char **const json, const bool print, int *co
 }
 
 /**
- * @brief Parses array and discards data. The JSON pointer is advanced to the
- * first character after the array.
+ * @brief Parses an array and discards data. The JSON pointer is advanced to
+ * the first character after the array.
  * @param json JSON pointer.
  * @param print True to print.
  * @param indent Indent.
@@ -704,7 +702,7 @@ static JsonResult ParseArray(const char **const json, const bool print, int *con
 const char *JsonResultToString(const JsonResult result) {
     switch (result) {
         case JsonResultOk:
-            return "OK";
+            return "Ok";
         case JsonResultInvalidSyntax:
             return "Invalid syntax";
         case JsonResultUnexpectedType:

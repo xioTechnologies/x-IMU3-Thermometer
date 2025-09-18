@@ -1,7 +1,7 @@
 /**
  * @file Json.h
  * @author Seb Madgwick
- * @brief Library for parsing of JSON strings.
+ * @brief Library for parsing JSON strings.
  */
 
 #ifndef JSON_H
