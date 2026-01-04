@@ -40,7 +40,7 @@ int main(void) {
 
     // Print start up message
     ResetCausePrint(ResetCauseGet());
-    printf("x-IMU3 Thermometer v1.3.0\n");
+    printf("x-IMU3 Thermometer v1.3.1\n");
 
     // Initialise modules
     TimerInitialise();
