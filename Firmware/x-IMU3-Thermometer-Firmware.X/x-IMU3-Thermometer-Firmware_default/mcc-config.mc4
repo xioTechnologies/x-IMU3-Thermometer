@@ -1,6 +1,6 @@
 configVersion: 1.0.0
-coreVersion: 5.8.2
-spaHostVersion: 1.0.0
+coreVersion: 5.8.4
+spaHostVersion: 1.2.1
 device: PIC32MM0256GPM028
 deviceLibrary:
   className: com.microchip.mcc.harmony.Harmony3Library
@@ -16,9 +16,9 @@ modules:
 - usb_device_cdc_0
 generatedFileHashHistoryMap:
 - file: ..\src\config\default\configuration.h
-  hash: 80f43fc8e3c9829d1540f59b55480efc6a05ffed0669af5f018b5bdaf0fffab5
+  hash: 93c174d82690d63f99a7e80692b8e21b2acb645a48b9e6b9782a78df4beb6527
 - file: ..\src\config\default\definitions.h
-  hash: a666b00ab81605c006c545e600dde4dc91329e2b6af85268231d6e231f89ba10
+  hash: d4f61ef0bd751490ba417f316854133ff5daf9f98956284cfae32cb44f596abd
 - file: ..\src\config\default\device.h
   hash: 4d4341a6f9628cea0bf73f980b639f7cb81089e55a60ad7e434be2a71e477442
 - file: ..\src\config\default\driver\driver.h
@@ -268,7 +268,7 @@ generatedFileHashHistoryMap:
 - file: ..\src\config\default\exceptions.c
   hash: ed8f326d4f1abc2e74c1743119304a2f613522e3baacdd8df59fdda14c44619e
 - file: ..\src\config\default\initialization.c
-  hash: 1344255874bb4544cbaf1e9c66d24814c27b931b80b636e0650d381e1390ee05
+  hash: 2c29a3eb48e05a2cd615b859ad7757b0f403092d027d79b76200813c0055c440
 - file: ..\src\config\default\interrupts.c
   hash: 6f2c4f2e9d64481f2754dcc6d6d33c6f288ad8fdf9c15f7597a7b303712bd274
 - file: ..\src\config\default\interrupts.h
@@ -316,7 +316,7 @@ generatedFileHashHistoryMap:
 - file: ..\src\config\default\system\system_module.h
   hash: 96c74368801b0a7aaa25aec3ec2cb0d483250385f103ffc1ff64089b4ca2c6d9
 - file: ..\src\config\default\tasks.c
-  hash: 393b52dbb0ac18715476ade72406dc303475384fe06d6cbcda91db38e244a615
+  hash: 42c6cbddc8b4efcbda1daefa860de47d4b1fe9d8163debf9caa5507a9b988bf6
 - file: ..\src\config\default\toolchain_specifics.h
   hash: b4de6e02e3e48c62f7ba233405ffdf6ef31bb971d1a7b49efa1676f45cabc1ac
 - file: ..\src\config\default\usb\src\usb_device.c

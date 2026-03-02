@@ -405,7 +405,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32MM-GPM-0XX_DFP" vendor="Microchip" version="1.4.156"/>
+        <pack name="PIC32MM-GPM-0XX_DFP" vendor="Microchip" version="1.5.160"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>

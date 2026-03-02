@@ -4,13 +4,13 @@
 
 
 project: x-IMU3-Thermometer-Firmware
-creation_date: 2025-09-11T07:16:19.203+01:00[Europe/London]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2026-03-02T11:48:00.643Z[Europe/London]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 11
 mcc_mode: IDE            # [IDE|Standalone|Headless]
-mcc_version: v5.6.2
-mcc_core_version: v5.8.2
-mplabx_version: v6.25        # if MPLAB X plugin only
-harmony_version: v5.6.2
+mcc_version: v5.6.4
+mcc_core_version: v5.8.4
+mplabx_version: v6.30        # if MPLAB X plugin only
+harmony_version: v5.6.4
 compiler: XC32 4.60
 
 modules:
