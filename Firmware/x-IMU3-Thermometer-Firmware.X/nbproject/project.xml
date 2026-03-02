@@ -4,12 +4,16 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>x-IMU3-Thermometer-Firmware</name>
-            <creation-uuid>24212082-0a51-4f29-8f87-61adaac1b435</creation-uuid>
+            <creation-uuid>d28098df-e1a3-40c7-8cd4-fb3cf7e4b10a</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../src</sourceRootElem>
+                <sourceRootElem>../src/Led</sourceRootElem>
+                <sourceRootElem>../src/Thermometer</sourceRootElem>
+                <sourceRootElem>../src/Timestamp</sourceRootElem>
+                <sourceRootElem>../src/x-io-PIC32-Library</sourceRootElem>
+                <sourceRootElem>../src/Ximu3Device</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

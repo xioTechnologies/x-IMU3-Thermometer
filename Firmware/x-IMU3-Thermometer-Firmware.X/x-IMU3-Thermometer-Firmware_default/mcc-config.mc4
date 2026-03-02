@@ -2,8 +2,7 @@ configVersion: 1.0.0
 coreVersion: 5.8.4
 spaHostVersion: 1.2.1
 device: PIC32MM0256GPM028
-deviceLibrary:
-  className: com.microchip.mcc.harmony.Harmony3Library
+deviceLibrary: {}
 groupModules: []
 modules:
 - HarmonyCore
@@ -266,9 +265,9 @@ generatedFileHashHistoryMap:
 - file: ..\src\config\default\driver\usb\usbfs\src\usbfs_registers.h
   hash: 3ab3a9a2f834f67d2cba41b6179be69ee25cc80b9422a8e6c6aa00e0377cfe2d
 - file: ..\src\config\default\exceptions.c
-  hash: ed8f326d4f1abc2e74c1743119304a2f613522e3baacdd8df59fdda14c44619e
+  hash: 277b822365dceb7e50cfb0b11c394adb81d0889dbda767550988817fee1cd9cd
 - file: ..\src\config\default\initialization.c
-  hash: 2c29a3eb48e05a2cd615b859ad7757b0f403092d027d79b76200813c0055c440
+  hash: cb7317ff685a10b3d087155f8db465737918935783b010e0747302f5f0beec4f
 - file: ..\src\config\default\interrupts.c
   hash: 6f2c4f2e9d64481f2754dcc6d6d33c6f288ad8fdf9c15f7597a7b303712bd274
 - file: ..\src\config\default\interrupts.h
@@ -288,7 +287,7 @@ generatedFileHashHistoryMap:
 - file: ..\src\config\default\peripheral\evic\plib_evic.c
   hash: ce457ce5d37de590d6e911457ecaf6c853391912f00b3278f7266ffd266e8244
 - file: ..\src\config\default\peripheral\evic\plib_evic.h
-  hash: 51ee35d6c1a13447fe5d8b63cd7a0e8b8ef10c991bb8ff47490daf855f55fcf1
+  hash: c3713e8874f82c773b96cc499054e6cf0b691f942b601e9487bd947d582f733c
 - file: ..\src\config\default\peripheral\gpio\plib_gpio.c
   hash: f92e7f80d07b0297bd264ab5c7f11abd1c1fef9a8bda1851b9f6f154468869a3
 - file: ..\src\config\default\peripheral\gpio\plib_gpio.h
@@ -318,7 +317,7 @@ generatedFileHashHistoryMap:
 - file: ..\src\config\default\tasks.c
   hash: 42c6cbddc8b4efcbda1daefa860de47d4b1fe9d8163debf9caa5507a9b988bf6
 - file: ..\src\config\default\toolchain_specifics.h
-  hash: b4de6e02e3e48c62f7ba233405ffdf6ef31bb971d1a7b49efa1676f45cabc1ac
+  hash: f6f3282ecb4ad8b5ba3487b7d7b8f6cfa3f977240726af07eaab058caf904381
 - file: ..\src\config\default\usb\src\usb_device.c
   hash: 25d4e1719a2948619c4f4b38406f896be37bbb74f4b8f631770ca32e1fe45b77
 - file: ..\src\config\default\usb\src\usb_device_cdc.c
