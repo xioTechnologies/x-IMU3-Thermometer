@@ -71,13 +71,13 @@ void Cct2InterruptHandler(void) {
  * @brief Update the LED.
  */
 static inline __attribute__((always_inline)) void Update(void) {
-    const uint16_t dimmed = 0x0000;
+    const uint16_t off = 0x0000;
     const uint16_t normal = 0x1FFF;
     const uint16_t bright = 0xFFFF;
 
     // Strobe
     if (TimerGetTicks64() < strobeTimeout) {
-        Pwm4Set(Pwm4Get() != dimmed ? dimmed : bright);
+        Pwm4Set(Pwm4Get() != off ? off : bright);
         return;
     }
 
