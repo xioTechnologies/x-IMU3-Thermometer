@@ -4,8 +4,8 @@
  * @brief x-IMU3 device.
  */
 
-#ifndef XIMU3_DEVICE
-#define XIMU3_DEVICE
+#ifndef XIMU3_DEVICE_H
+#define XIMU3_DEVICE_H
 
 //------------------------------------------------------------------------------
 // Function declarations

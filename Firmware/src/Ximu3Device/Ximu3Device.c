@@ -34,6 +34,7 @@ static void Error(const char* const error, void* const context);
 static Ximu3CommandInterface interfaces[] = {
     { .name = "USB", .read = UsbRead, .write = UsbWrite},
 };
+
 static const Ximu3CommandMap commands[] = {
     {"ping", Ping},
     {"blink", Blink},
@@ -41,6 +42,7 @@ static const Ximu3CommandMap commands[] = {
     {"note", Note},
     {"timestamp", Timestamp},
 };
+
 static Ximu3CommandBridge bridge = {
     .interfaces = interfaces,
     .numberOfInterfaces = sizeof (interfaces) / sizeof (Ximu3CommandInterface),
@@ -92,7 +94,7 @@ static void Ping(const char* * const value, Ximu3CommandResponse * const respons
         return;
     }
     char serialNumber[16];
-    snprintf(serialNumber, sizeof (serialNumber), "%08X", ThermometerReadUniqueID());
+    snprintf(serialNumber, sizeof (serialNumber), "%08X", ThermometerReadUniqueId());
     Ximu3CommandRespondPing(response, "x-IMU3 Thermometer", serialNumber);
 }
 
@@ -162,7 +164,7 @@ void Timestamp(const char* * const value, Ximu3CommandResponse * const response,
 
 /**
  * @brief Error handler.
- * @param error error.
+ * @param error Error.
  * @param context Context.
  */
 static void Error(const char* const error, void* const context) {

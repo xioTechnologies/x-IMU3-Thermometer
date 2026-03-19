@@ -8,6 +8,7 @@
 // Includes
 
 #include "I2C/I2C2.h"
+#include "Thermometer.h"
 
 //------------------------------------------------------------------------------
 // Definitions
@@ -39,10 +40,10 @@ float ThermometerReadTemperature(void) {
 }
 
 /**
- * @brief Reads the unique ID
- * @return Unique ID
+ * @brief Reads the unique ID.
+ * @return Unique ID.
  */
-uint32_t ThermometerReadUniqueID(void) {
+uint32_t ThermometerReadUniqueId(void) {
     const uint16_t upperWord = ReadRegister(0x06);
     const uint16_t lowerWord = ReadRegister(0x08);
     return ((uint32_t) upperWord << 16) | (uint32_t) lowerWord;

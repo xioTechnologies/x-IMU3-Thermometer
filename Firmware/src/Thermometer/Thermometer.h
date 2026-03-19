@@ -17,7 +17,7 @@
 
 void ThermometerInitialise(void);
 float ThermometerReadTemperature(void);
-uint32_t ThermometerReadUniqueID(void);
+uint32_t ThermometerReadUniqueId(void);
 
 #endif
 

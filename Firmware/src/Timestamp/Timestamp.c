@@ -19,7 +19,7 @@ static uint64_t offset;
 // Functions
 
 /**
- * @brief Gets the timestamp.
+ * @brief Returns the current timestamp.
  * @return Timestamp.
  */
 uint64_t TimestampGet(void) {
@@ -27,7 +27,7 @@ uint64_t TimestampGet(void) {
 }
 
 /**
- * @brief Sets the timestamp.
+ * @brief Sets the current timestamp.
  * @param timestamp Timestamp.
  */
 void TimestampSet(const uint64_t timestamp) {

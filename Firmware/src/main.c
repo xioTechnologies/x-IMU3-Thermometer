@@ -38,7 +38,7 @@ int main(void) {
     // Initialise debug UART
     Uart2Initialise(&uartSettingsDefault);
 
-    // Print start up message
+    // Print startup message
     ResetCausePrint(ResetCauseGet());
     printf("x-IMU3 Thermometer v1.3.1\n");
 

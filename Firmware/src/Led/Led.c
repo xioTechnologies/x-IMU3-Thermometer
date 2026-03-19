@@ -68,7 +68,7 @@ void Cct2InterruptHandler(void) {
 }
 
 /**
- * @brief Update the LED.
+ * @brief Updates the LED.
  */
 static inline __attribute__((always_inline)) void Update(void) {
     const uint16_t off = 0x0000;
