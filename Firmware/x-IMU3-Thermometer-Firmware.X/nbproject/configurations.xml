@@ -609,7 +609,7 @@
         <property key="save-temps" value="false"/>
         <property key="stack-smashing" value=""/>
         <property key="wpo-lto" value="false"/>
-        <appendMe value="-Wstrict-prototypes"/>
+        <appendMe value="-Wstrict-prototypes -Wall -Werror -Wno-array-bounds"/>
       </C32Global>
     </conf>
   </confs>
