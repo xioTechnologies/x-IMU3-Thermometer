@@ -400,7 +400,7 @@ JsonResult JsonParseNumberRaw(const char **const json, char *const destination, 
     const char *jsonCopy = *json;
     if (*jsonCopy == '-') {
         jsonCopy++;
-        if (isdigit((int) *jsonCopy) == 0) {
+        if (isdigit((unsigned char) *jsonCopy) == 0) {
             return JsonResultInvalidNumberFormat; // minus sign must be followed by digit
         }
     }
@@ -414,18 +414,18 @@ JsonResult JsonParseNumberRaw(const char **const json, char *const destination, 
     }
 
     // Parse integer
-    while (isdigit((int) *jsonCopy) != 0) {
+    while (isdigit((unsigned char) *jsonCopy) != 0) {
         jsonCopy++;
     }
 
     // Parse fraction
     if (*jsonCopy == '.') {
         jsonCopy++;
-        if (isdigit((int) *jsonCopy) == 0) {
+        if (isdigit((unsigned char) *jsonCopy) == 0) {
             return JsonResultInvalidNumberFormat; // decimal point must be followed by digit
         }
     }
-    while (isdigit((int) *jsonCopy) != 0) {
+    while (isdigit((unsigned char) *jsonCopy) != 0) {
         jsonCopy++;
     }
 
@@ -435,11 +435,11 @@ JsonResult JsonParseNumberRaw(const char **const json, char *const destination, 
         if ((*jsonCopy == '+') || (*jsonCopy == '-')) {
             jsonCopy++;
         }
-        if (isdigit((int) *jsonCopy) == 0) {
+        if (isdigit((unsigned char) *jsonCopy) == 0) {
             return JsonResultInvalidNumberFormat; // exponent must be followed by digit
         }
     }
-    while (isdigit((int) *jsonCopy) != 0) {
+    while (isdigit((unsigned char) *jsonCopy) != 0) {
         jsonCopy++;
     }
 
@@ -595,8 +595,8 @@ static JsonResult ParseValue(const char **const json, const bool print, int *con
 }
 
 /**
- * @brief Parses an object and discards data. The JSON pointer is advanced to
- * the first character after the object.
+ * @brief Parses an object and discards the data. The JSON pointer is advanced
+ * to the first character after the object.
  * @param json JSON pointer.
  * @param print True to print.
  * @param indent Indent.
@@ -648,7 +648,7 @@ static JsonResult ParseObject(const char **const json, const bool print, int *co
 }
 
 /**
- * @brief Parses an array and discards data. The JSON pointer is advanced to
+ * @brief Parses an array and discards the data. The JSON pointer is advanced to
  * the first character after the array.
  * @param json JSON pointer.
  * @param print True to print.

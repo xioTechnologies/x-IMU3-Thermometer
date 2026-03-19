@@ -84,7 +84,7 @@ JsonResult JsonParseNull(const char **const json);
 
 JsonResult JsonParse(const char **const json);
 
-void JsonPrint(const char *json);
+void JsonPrint(const char *json_);
 
 const char *JsonResultToString(const JsonResult result);
 

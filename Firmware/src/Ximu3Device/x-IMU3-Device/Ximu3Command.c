@@ -13,7 +13,6 @@
 #include "Key.h"
 #include "Metadata.h"
 #include <stdarg.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include "Ximu3Command.h"
@@ -191,7 +190,7 @@ static void ParseCommand(const Ximu3CommandBridge * const bridge, const Ximu3Com
     char key[XIMU3_KEY_SIZE];
     result = JsonParseKey(json, key, sizeof (key));
     if (result != JsonResultOk) {
-        Error(bridge, "%s receive error. Unable able to parse key. %s.", interface->name, JsonResultToString(result));
+        Error(bridge, "%s receive error. Unable to parse key. %s.", interface->name, JsonResultToString(result));
         return;
     }
 
@@ -199,7 +198,7 @@ static void ParseCommand(const Ximu3CommandBridge * const bridge, const Ximu3Com
     const char* value = *json;
     result = JsonParse(json);
     if (result != JsonResultOk) {
-        Error(bridge, "%s receive error. Unable able to parse value. %s.", interface->name, JsonResultToString(result));
+        Error(bridge, "%s receive error. Unable to parse value. %s.", interface->name, JsonResultToString(result));
         return;
     }
 
@@ -263,7 +262,7 @@ static void ParseCommand(const Ximu3CommandBridge * const bridge, const Ximu3Com
                 return;
             }
             if (Ximu3SettingsIndexFrom(&index, integer) == Ximu3ResultOk) {
-                Ximu3SettingsJsonGetObject(bridge->settings, response.value, sizeof (response.value), integer);
+                Ximu3SettingsJsonGetObject(bridge->settings, response.value, sizeof (response.value), index);
             }
             Ximu3CommandRespond(&response);
             return;
@@ -303,7 +302,7 @@ Ximu3Result Ximu3CommandParseString(const char* * const value, Ximu3CommandRespo
  * @param number Number.
  * @return Result.
  */
-Ximu3Result Ximu3CommandParseNumber(const char* * const value, Ximu3CommandResponse * const response, float *const number) {
+Ximu3Result Ximu3CommandParseNumber(const char* * const value, Ximu3CommandResponse * const response, float* const number) {
     const JsonResult result = JsonParseNumber(value, number);
     if (result != JsonResultOk) {
         Ximu3CommandRespondError(response, JsonResultToString(result));
@@ -327,7 +326,7 @@ Ximu3Result Ximu3CommandParseNumberU64(const char* * const value, Ximu3CommandRe
         return Ximu3ResultError;
     }
     for (size_t index = 0; index < strlen(string); index++) {
-        if (isdigit((int) string[index]) == 0) {
+        if (isdigit((unsigned char) string[index]) == 0) {
             Ximu3CommandRespondError(response, "Number must be a 64-bit unsigned integer");
             return Ximu3ResultError;
         }
@@ -340,7 +339,7 @@ Ximu3Result Ximu3CommandParseNumberU64(const char* * const value, Ximu3CommandRe
 }
 
 /**
- * @brief Parses Boolean and responds with error if unsuccessful.
+ * @brief Parses boolean and responds with error if unsuccessful.
  * @param value Value.
  * @param response Response.
  * @param boolean Boolean.
@@ -405,7 +404,7 @@ void Ximu3CommandRespondError(Ximu3CommandResponse * const response, const char*
 }
 
 /**
- * @param Error handler.
+ * @brief Error handler.
  * @param bridge Bridge.
  * @param format Format.
  * @param ...
