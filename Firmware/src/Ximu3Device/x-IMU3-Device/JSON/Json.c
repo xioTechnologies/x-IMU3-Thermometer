@@ -695,9 +695,9 @@ static JsonResult ParseArray(const char **const json, const bool print, int *con
 }
 
 /**
- * @brief Returns the result message.
+ * @brief Returns a string representation of the result.
  * @param result Result.
- * @return Result message.
+ * @return String representation of the result.
  */
 const char *JsonResultToString(const JsonResult result) {
     switch (result) {
