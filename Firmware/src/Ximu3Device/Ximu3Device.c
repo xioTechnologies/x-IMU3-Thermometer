@@ -163,7 +163,7 @@ void Timestamp(const char* * const value, Ximu3CommandResponse * const response,
 }
 
 /**
- * @brief Error handler.
+ * @brief Error callback.
  * @param error Error.
  * @param context Context.
  */
