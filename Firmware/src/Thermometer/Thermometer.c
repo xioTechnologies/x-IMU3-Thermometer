@@ -8,7 +8,6 @@
 // Includes
 
 #include "I2C/I2C2.h"
-#include "Thermometer.h"
 
 //------------------------------------------------------------------------------
 // Definitions
@@ -32,21 +31,22 @@ void ThermometerInitialise(void) {
 }
 
 /**
- * @brief Reads temperature in degree Celsius.
- * @return Temperature in degree Celsius.
+ * @brief Returns the temperature in degrees Celsius.
+ * @return Temperature in degrees Celsius.
  */
 float ThermometerReadTemperature(void) {
-    return ((float) ReadRegister(0x00)) * 0.0078125f;
+    return (float) (int16_t) ReadRegister(0x00) * 0.0078125f;
 }
 
 /**
- * @brief Reads the unique ID.
- * @return Unique ID.
+ * @brief Returns the 48-bit unique ID.
+ * @return 48-bit unique ID.
  */
-uint32_t ThermometerReadUniqueId(void) {
-    const uint16_t upperWord = ReadRegister(0x06);
-    const uint16_t lowerWord = ReadRegister(0x08);
-    return ((uint32_t) upperWord << 16) | (uint32_t) lowerWord;
+uint64_t ThermometerReadUniqueId(void) {
+    const uint16_t word2 = ReadRegister(0x05);
+    const uint16_t word1 = ReadRegister(0x06);
+    const uint16_t word0 = ReadRegister(0x08);
+    return ((uint64_t) word2 << 32) | ((uint64_t) word1 << 16) | (uint64_t) word0;
 }
 
 /**

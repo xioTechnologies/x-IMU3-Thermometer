@@ -40,7 +40,7 @@ int main(void) {
 
     // Print startup message
     ResetCausePrint(ResetCauseGet());
-    printf("x-IMU3 Thermometer v1.3.1\n");
+    printf("x-IMU3 Thermometer v1.4.0\n");
 
     // Initialise modules
     TimerInitialise();
@@ -51,12 +51,12 @@ int main(void) {
     while (true) {
         SYS_Tasks();
 
-        // Module tasks
+        // Application tasks
         UsbCdcTasks();
         Ximu3DeviceTasks();
 
         // Send temperature
-        if (PERIODIC_POLL(1.0f)) {
+        if (UsbCdcPortOpen() && PERIODIC_POLL(1.0f)) {
             const Ximu3DataTemperature data = {
                 .timestamp = TimestampGet(),
                 .temperature = ThermometerReadTemperature(),

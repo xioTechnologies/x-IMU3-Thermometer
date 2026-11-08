@@ -8,7 +8,6 @@
 // Includes
 
 #include "definitions.h"
-#include "Led.h"
 #include "PeripheralBusClockFrequency.h"
 #include "Pwm/Pwm4.h"
 #include <stdbool.h>

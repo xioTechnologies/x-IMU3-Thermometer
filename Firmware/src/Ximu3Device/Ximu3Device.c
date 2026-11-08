@@ -7,11 +7,11 @@
 //------------------------------------------------------------------------------
 // Includes
 
+#include <inttypes.h>
 #include "Led/Led.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "Thermometer/Thermometer.h"
-#include "Timer/Timer.h"
 #include "Timestamp/Timestamp.h"
 #include "Usb/UsbCdc.h"
 #include "x-IMU3-Device/Ximu3.h"
@@ -22,28 +22,28 @@
 static size_t UsbRead(void* const destination, const size_t numberOfBytes, void* const context);
 static void UsbWrite(const void* const data, const size_t numberOfBytes, void* const context);
 static void Ping(const char* * const value, Ximu3CommandResponse * const response, void* const context);
-static void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context);
-static void Strobe(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Note(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Timestamp(const char* * const value, Ximu3CommandResponse * const response, void* const context);
+static void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context);
+static void Strobe(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Error(const char* const error, void* const context);
 
 //------------------------------------------------------------------------------
 // Variables
 
 static Ximu3CommandInterface interfaces[] = {
-    { .name = "USB", .read = UsbRead, .write = UsbWrite},
+    {.name = "USB", .read = UsbRead, .write = UsbWrite},
 };
 
 static const Ximu3CommandMap commands[] = {
     {"ping", Ping},
-    {"blink", Blink},
-    {"strobe", Strobe},
     {"note", Note},
     {"timestamp", Timestamp},
+    {"blink", Blink},
+    {"strobe", Strobe},
 };
 
-static Ximu3CommandBridge bridge = {
+static const Ximu3CommandBridge bridge = {
     .interfaces = interfaces,
     .numberOfInterfaces = sizeof (interfaces) / sizeof (Ximu3CommandInterface),
     .commands = commands,
@@ -69,7 +69,7 @@ void Ximu3DeviceTasks(void) {
  * @param context Context.
  * @return Number of bytes read.
  */
-size_t UsbRead(void* const destination, const size_t numberOfBytes, void* const context) {
+static size_t UsbRead(void* const destination, const size_t numberOfBytes, void* const context) {
     return UsbCdcRead(destination, numberOfBytes);
 }
 
@@ -79,7 +79,7 @@ size_t UsbRead(void* const destination, const size_t numberOfBytes, void* const 
  * @param numberOfBytes Number of bytes.
  * @param context Context.
  */
-void UsbWrite(const void* const data, const size_t numberOfBytes, void* const context) {
+static void UsbWrite(const void* const data, const size_t numberOfBytes, void* const context) {
     UsbCdcWrite(data, numberOfBytes);
 }
 
@@ -94,36 +94,9 @@ static void Ping(const char* * const value, Ximu3CommandResponse * const respons
         return;
     }
     char serialNumber[16];
-    snprintf(serialNumber, sizeof (serialNumber), "%08X", ThermometerReadUniqueId());
+    const uint64_t uniqueId = ThermometerReadUniqueId();
+    snprintf(serialNumber, sizeof (serialNumber), "%04" PRIX16 "-%04" PRIX16 "-%04" PRIX16, (uint16_t) (uniqueId >> 32), (uint16_t) (uniqueId >> 16), (uint16_t) uniqueId);
     Ximu3CommandRespondPing(response, "x-IMU3 Thermometer", serialNumber, "x-IMU3 Thermometer");
-}
-
-/**
- * @brief Blink command.
- * @param value Value.
- * @param response Response.
- * @param context Context.
- */
-void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
-    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
-        return;
-    }
-    LedBlink();
-    Ximu3CommandRespond(response);
-}
-
-/**
- * @brief Strobe command.
- * @param value Value.
- * @param response Response.
- * @param context Context.
- */
-void Strobe(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
-    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
-        return;
-    }
-    LedStrobe();
-    Ximu3CommandRespond(response);
 }
 
 /**
@@ -153,12 +126,40 @@ static void Note(const char* * const value, Ximu3CommandResponse * const respons
  * @param response Response.
  * @param context Context.
  */
-void Timestamp(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
+static void Timestamp(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
     uint64_t timestamp;
     if (Ximu3CommandParseNumberU64(value, response, &timestamp) != Ximu3ResultOk) {
         return;
     }
     TimestampSet(timestamp);
+    Ximu3CommandRespond(response);
+}
+
+/**
+ * @brief Blink command.
+ * @param value Value.
+ * @param response Response.
+ * @param context Context.
+ */
+static void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
+    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
+        return;
+    }
+    LedBlink();
+    Ximu3CommandRespond(response);
+}
+
+/**
+ * @brief Strobe command.
+ * @param value Value.
+ * @param response Response.
+ * @param context Context.
+ */
+static void Strobe(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
+    if (Ximu3CommandParseNull(value, response) != Ximu3ResultOk) {
+        return;
+    }
+    LedStrobe();
     Ximu3CommandRespond(response);
 }
 
@@ -169,12 +170,12 @@ void Timestamp(const char* * const value, Ximu3CommandResponse * const response,
  */
 static void Error(const char* const error, void* const context) {
     const Ximu3DataError data = {
-        .timestamp = TimerGetTicks64() / TIMER_TICKS_PER_MICROSECOND,
+        .timestamp = TimestampGet(),
         .error = error,
     };
     uint8_t message[XIMU3_SIZE_ERROR];
     const size_t messageSize = Ximu3AsciiError(message, sizeof (message), &data);
-    UsbWrite(message, messageSize, context);
+    UsbCdcWrite(message, messageSize);
 }
 
 //------------------------------------------------------------------------------

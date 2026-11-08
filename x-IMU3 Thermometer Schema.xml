@@ -1,0 +1,9 @@
+<Schema name="x-IMU3 Thermometer">
+    <Commands>
+        <Command key="ping"/>
+        <Command key="note"/>
+        <Command key="timestamp"/>
+        <Command key="blink"/>
+        <Command key="strobe"/>
+    </Commands>
+</Schema>
