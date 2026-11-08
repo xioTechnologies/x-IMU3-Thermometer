@@ -7,7 +7,6 @@
 //------------------------------------------------------------------------------
 // Includes
 
-#include <ctype.h>
 #include <math.h>
 #include "Metadata.h"
 #include <string.h>
@@ -38,9 +37,24 @@ void Ximu3SettingsInitialise(Ximu3Settings * const settings) {
     }
 
     // Fix invalid values
-    for (int index = 0; index < XIMU3_NUMBER_OF_SETTINGS; index++) {
+    for (int integer = 0; integer < XIMU3_NUMBER_OF_SETTINGS; integer++) {
+        Ximu3SettingsIndex index;
+        if (Ximu3SettingsIndexFrom(&index, integer) != Ximu3ResultOk) {
+            continue;
+        }
         const Metadata metadata = MetadataGet(settings, index);
         SetValue(&metadata, metadata.value);
+    }
+
+    // Sanitise
+    if (settings->sanitise != NULL) {
+        for (int integer = 0; integer < XIMU3_NUMBER_OF_SETTINGS; integer++) {
+            Ximu3SettingsIndex index;
+            if (Ximu3SettingsIndexFrom(&index, integer) != Ximu3ResultOk) {
+                continue;
+            }
+            settings->sanitise(index, settings->context);
+        }
     }
 
     // Epilogue
@@ -50,14 +64,18 @@ void Ximu3SettingsInitialise(Ximu3Settings * const settings) {
 }
 
 /**
- * @brief Load defaults.
+ * @brief Loads defaults.
  * @param settings Settings.
  * @param overwritePreserved True to overwrite preserved settings.
  */
 void Ximu3SettingsLoadDefaults(Ximu3Settings * const settings, const bool overwritePreserved) {
 
     // Load defaults
-    for (int index = 0; index < XIMU3_NUMBER_OF_SETTINGS; index++) {
+    for (int integer = 0; integer < XIMU3_NUMBER_OF_SETTINGS; integer++) {
+        Ximu3SettingsIndex index;
+        if (Ximu3SettingsIndexFrom(&index, integer) != Ximu3ResultOk) {
+            continue;
+        }
         const Metadata metadata = MetadataGet(settings, index);
         if (metadata.preserved && (overwritePreserved == false)) {
             continue;
@@ -73,6 +91,7 @@ void Ximu3SettingsLoadDefaults(Ximu3Settings * const settings, const bool overwr
 
 /**
  * @brief Returns values.
+ * @param settings Settings.
  * @return Values.
  */
 const Ximu3SettingsValues* Ximu3SettingsGet(const Ximu3Settings * const settings) {
@@ -106,8 +125,13 @@ void Ximu3SettingsSet(Ximu3Settings * const settings, const Ximu3SettingsIndex i
     // Clear applied flag
     *metadata.applied = false;
 
-    // Write value
+    // Set value
     SetValue(&metadata, value);
+
+    // Sanitise
+    if (settings->sanitise != NULL) {
+        settings->sanitise(index, settings->context);
+    }
 }
 
 /**
@@ -159,7 +183,7 @@ static void CopyString(char* const destination, const size_t destinationSize, co
             destination[index] = *string;
             continue;
         }
-        if ((*string < 0) || (isprint(*string) == 0)) {
+        if (((unsigned char) *string < 0x20) || ((unsigned char) *string > 0x7E)) {
             destination[index] = '?';
         } else {
             destination[index] = *string;
@@ -195,7 +219,11 @@ bool Ximu3SettingsApplyPending(Ximu3Settings * const settings, const Ximu3Settin
  * @param settings Settings.
  */
 void Ximu3SettingsClearApplyPending(Ximu3Settings * const settings) {
-    for (int index = 0; index < XIMU3_NUMBER_OF_SETTINGS; index++) {
+    for (int integer = 0; integer < XIMU3_NUMBER_OF_SETTINGS; integer++) {
+        Ximu3SettingsIndex index;
+        if (Ximu3SettingsIndexFrom(&index, integer) != Ximu3ResultOk) {
+            continue;
+        }
         const Metadata metadata = MetadataGet(settings, index);
         *metadata.applied = true;
     }

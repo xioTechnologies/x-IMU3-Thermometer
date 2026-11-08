@@ -111,7 +111,20 @@ static JsonResult CheckType(const char **const json, const JsonType expectedType
         return result;
     }
     if (type != expectedType) {
-        return JsonResultUnexpectedType;
+        switch (expectedType) {
+            case JsonTypeString:
+                return JsonResultExpectedString;
+            case JsonTypeNumber:
+                return JsonResultExpectedNumber;
+            case JsonTypeObject:
+                return JsonResultExpectedObject;
+            case JsonTypeArray:
+                return JsonResultExpectedArray;
+            case JsonTypeBoolean:
+                return JsonResultExpectedBoolean;
+            case JsonTypeNull:
+                return JsonResultExpectedNull;
+        }
     }
     return JsonResultOk;
 }
@@ -195,7 +208,7 @@ JsonResult JsonParseComma(const char **const json) {
  * @brief Parses the key in a JSON object. The JSON pointer is advanced to the
  * first character after the colon that separates the key/value pair.
  * @param json JSON pointer.
- * @param destination Destination. NULL if not required.
+ * @param destination Destination. NULL if unused.
  * @param destinationSize Destination size.
  * @return Result.
  */
@@ -224,9 +237,9 @@ JsonResult JsonParseKey(const char **const json, char *const destination, const 
  * @brief Parses a string. The JSON pointer is advanced to the first character
  * after the string.
  * @param json JSON pointer.
- * @param destination Destination. NULL if not required.
+ * @param destination Destination. NULL if unused.
  * @param destinationSize Destination size.
- * @param numberOfBytes Number of bytes in string. NULL if not required.
+ * @param numberOfBytes Number of bytes in string. NULL if unused.
  * @return Result.
  */
 JsonResult JsonParseString(const char **const json, char *const destination, const size_t destinationSize, size_t *const numberOfBytes) {
@@ -360,7 +373,7 @@ static void WriteChar(char *const destination, size_t *const index, const char c
  * @brief Parses a number. The JSON pointer is advanced to the first character
  * after the number.
  * @param json JSON pointer.
- * @param number Number. NULL if not required.
+ * @param number Number. NULL if unused.
  * @return Result.
  */
 JsonResult JsonParseNumber(const char **const json, float *const number) {
@@ -385,7 +398,7 @@ JsonResult JsonParseNumber(const char **const json, float *const number) {
  * @brief Parses a raw number string. The JSON pointer is advanced to the first
  * character after the number.
  * @param json JSON pointer.
- * @param destination Destination. NULL if not required.
+ * @param destination Destination. NULL if unused.
  * @param destinationSize Destination size.
  * @return Result.
  */
@@ -459,7 +472,7 @@ JsonResult JsonParseNumberRaw(const char **const json, char *const destination, 
  * @brief Parses a boolean. The JSON pointer is advanced to the first character
  * after the boolean.
  * @param json JSON pointer.
- * @param boolean Boolean. NULL if not required.
+ * @param boolean Boolean. NULL if unused.
  * @return Result.
  */
 JsonResult JsonParseBoolean(const char **const json, bool *const boolean) {
@@ -705,8 +718,18 @@ const char *JsonResultToString(const JsonResult result) {
             return "Ok";
         case JsonResultInvalidSyntax:
             return "Invalid syntax";
-        case JsonResultUnexpectedType:
-            return "Unexpected type";
+        case JsonResultExpectedString:
+            return "Expected string";
+        case JsonResultExpectedNumber:
+            return "Expected number";
+        case JsonResultExpectedObject:
+            return "Expected object";
+        case JsonResultExpectedArray:
+            return "Expected array";
+        case JsonResultExpectedBoolean:
+            return "Expected boolean";
+        case JsonResultExpectedNull:
+            return "Expected null";
         case JsonResultMissingObjectEnd:
             return "Missing object end";
         case JsonResultMissingArrayEnd:
@@ -736,7 +759,7 @@ const char *JsonResultToString(const JsonResult result) {
         case JsonResultUnableToParseNumber:
             return "Unable to parse number";
     }
-    return ""; // avoid compiler warning
+    return ""; // unreachable code: -Werror=switch
 }
 
 //------------------------------------------------------------------------------

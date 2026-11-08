@@ -25,6 +25,7 @@ typedef struct {
     void (*const nvmWrite) (const void* const data, const size_t numberOfBytes, void* const context); // NULL if unused
     void (*const initialiseEpilogue) (void* const context); // NULL if unused
     void (*const defaultsEpilogue) (void* const context); // NULL if unused
+    void (*const sanitise) (const Ximu3SettingsIndex index, void* const context); // NULL if unused
     void* context;
     Ximu3SettingsValues values; // private
     bool applied[XIMU3_NUMBER_OF_SETTINGS]; // private

@@ -26,7 +26,12 @@ extern "C" {
 typedef enum {
     JsonResultOk,
     JsonResultInvalidSyntax,
-    JsonResultUnexpectedType,
+    JsonResultExpectedString,
+    JsonResultExpectedNumber,
+    JsonResultExpectedObject,
+    JsonResultExpectedArray,
+    JsonResultExpectedBoolean,
+    JsonResultExpectedNull,
     JsonResultMissingObjectEnd,
     JsonResultMissingArrayEnd,
     JsonResultMissingComma,

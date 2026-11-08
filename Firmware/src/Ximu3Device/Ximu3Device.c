@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------
 // Function declarations
 
-static size_t UsbRead(void* const destination, size_t numberOfBytes, void* const context);
+static size_t UsbRead(void* const destination, const size_t numberOfBytes, void* const context);
 static void UsbWrite(const void* const data, const size_t numberOfBytes, void* const context);
 static void Ping(const char* * const value, Ximu3CommandResponse * const response, void* const context);
 static void Blink(const char* * const value, Ximu3CommandResponse * const response, void* const context);
@@ -69,7 +69,7 @@ void Ximu3DeviceTasks(void) {
  * @param context Context.
  * @return Number of bytes read.
  */
-size_t UsbRead(void* const destination, size_t numberOfBytes, void* const context) {
+size_t UsbRead(void* const destination, const size_t numberOfBytes, void* const context) {
     return UsbCdcRead(destination, numberOfBytes);
 }
 
@@ -95,7 +95,7 @@ static void Ping(const char* * const value, Ximu3CommandResponse * const respons
     }
     char serialNumber[16];
     snprintf(serialNumber, sizeof (serialNumber), "%08X", ThermometerReadUniqueId());
-    Ximu3CommandRespondPing(response, "x-IMU3 Thermometer", serialNumber);
+    Ximu3CommandRespondPing(response, "x-IMU3 Thermometer", serialNumber, "x-IMU3 Thermometer");
 }
 
 /**
@@ -133,17 +133,17 @@ void Strobe(const char* * const value, Ximu3CommandResponse * const response, vo
  * @param context Context.
  */
 static void Note(const char* * const value, Ximu3CommandResponse * const response, void* const context) {
-    char string[XIMU3_VALUE_SIZE];
+    char string[XIMU3_SIZE_VALUE];
     if (Ximu3CommandParseString(value, response, string, sizeof (string), NULL) != Ximu3ResultOk) {
         return;
     }
     const Ximu3DataNotification data = {
         .timestamp = TimestampGet(),
-        .string = string,
+        .notification = string,
     };
-    char message[256];
-    const int numberOfBytes = Ximu3DataNotificationAscii(message, sizeof (message), &data);
-    UsbCdcWrite(message, numberOfBytes);
+    uint8_t message[XIMU3_SIZE_NOTIFICATION];
+    const size_t messageSize = Ximu3AsciiNotification(message, sizeof (message), &data);
+    UsbCdcWrite(message, messageSize);
     Ximu3CommandRespond(response);
 }
 
@@ -170,11 +170,11 @@ void Timestamp(const char* * const value, Ximu3CommandResponse * const response,
 static void Error(const char* const error, void* const context) {
     const Ximu3DataError data = {
         .timestamp = TimerGetTicks64() / TIMER_TICKS_PER_MICROSECOND,
-        .string = error,
+        .error = error,
     };
-    char message[256];
-    const int numberOfBytes = Ximu3DataErrorAscii(message, sizeof (message), &data);
-    UsbWrite(message, numberOfBytes, context);
+    uint8_t message[XIMU3_SIZE_ERROR];
+    const size_t messageSize = Ximu3AsciiError(message, sizeof (message), &data);
+    UsbWrite(message, messageSize, context);
 }
 
 //------------------------------------------------------------------------------

@@ -4,6 +4,9 @@
 
 Ximu3Result Ximu3SettingsIndexFrom(Ximu3SettingsIndex * const index, const int integer) {
     switch (integer) {
+        case Ximu3SettingsIndexModel:
+            *index = Ximu3SettingsIndexModel;
+            break;
         case Ximu3SettingsIndexSerialNumber:
             *index = Ximu3SettingsIndexSerialNumber;
             break;

@@ -61,9 +61,9 @@ int main(void) {
                 .timestamp = TimestampGet(),
                 .temperature = ThermometerReadTemperature(),
             };
-            char message[256];
-            const int numberOfBytes = Ximu3DataTemperatureAscii(message, sizeof (message), &data);
-            UsbCdcWrite(message, numberOfBytes);
+            uint8_t message[XIMU3_SIZE_TEMPERATURE];
+            const size_t messageSize = Ximu3AsciiTemperature(message, sizeof (message), &data);
+            UsbCdcWrite(message, messageSize);
         }
     }
     return (EXIT_FAILURE);

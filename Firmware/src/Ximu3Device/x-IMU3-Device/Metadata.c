@@ -3,6 +3,7 @@
 #include "Metadata.h"
 
 static const char* const names[] = {
+    "Model",
     "Serial Number",
     "Hardware Version",
     "Firmware Version",
@@ -17,6 +18,7 @@ static const char* const names[] = {
 };
 
 static const char* const keys[] = {
+    "model",
     "serial_number",
     "hardware_version",
     "firmware_version",
@@ -30,7 +32,8 @@ static const char* const keys[] = {
     "example_float",
 };
 
-const MetadataType types[] = {
+static const MetadataType types[] = {
+    MetadataTypeString,
     MetadataTypeString,
     MetadataTypeString,
     MetadataTypeString,
@@ -44,25 +47,27 @@ const MetadataType types[] = {
     MetadataTypeFloat,
 };
 
-const size_t sizes[] = {
-    sizeof (((Ximu3SettingsValues *) 0)->serialNumber),
-    sizeof (((Ximu3SettingsValues *) 0)->hardwareVersion),
-    sizeof (((Ximu3SettingsValues *) 0)->firmwareVersion),
-    sizeof (((Ximu3SettingsValues *) 0)->deviceName),
-    sizeof (((Ximu3SettingsValues *) 0)->serialEnabled),
-    sizeof (((Ximu3SettingsValues *) 0)->serialBaudRate),
-    sizeof (((Ximu3SettingsValues *) 0)->serialRtsCtsEnabled),
-    sizeof (((Ximu3SettingsValues *) 0)->binaryModeEnabled),
-    sizeof (((Ximu3SettingsValues *) 0)->usbDataMessagesEnabled),
-    sizeof (((Ximu3SettingsValues *) 0)->serialDataMessagesEnabled),
-    sizeof (((Ximu3SettingsValues *) 0)->exampleFloat),
+static const size_t sizes[] = {
+    sizeof (((Ximu3SettingsValues*) 0)->model),
+    sizeof (((Ximu3SettingsValues*) 0)->serialNumber),
+    sizeof (((Ximu3SettingsValues*) 0)->hardwareVersion),
+    sizeof (((Ximu3SettingsValues*) 0)->firmwareVersion),
+    sizeof (((Ximu3SettingsValues*) 0)->deviceName),
+    sizeof (((Ximu3SettingsValues*) 0)->serialEnabled),
+    sizeof (((Ximu3SettingsValues*) 0)->serialBaudRate),
+    sizeof (((Ximu3SettingsValues*) 0)->serialRtsCtsEnabled),
+    sizeof (((Ximu3SettingsValues*) 0)->binaryModeEnabled),
+    sizeof (((Ximu3SettingsValues*) 0)->usbDataMessagesEnabled),
+    sizeof (((Ximu3SettingsValues*) 0)->serialDataMessagesEnabled),
+    sizeof (((Ximu3SettingsValues*) 0)->exampleFloat),
 };
 
-const void* const defaults[] = {
+static const void* const defaults[] = {
+    (void*) (&(char[32]) {"x-IMU3"}),
     (void*) (&(char[32]) {"Unknown"}),
     (void*) (&(char[32]) {"Unknown"}),
     (void*) (&(char[32]) {"Unknown"}),
-    (void*) (&(char[32]) {"x-IMU3 Device"}),
+    (void*) (&(char[32]) {"My x-IMU3"}),
     (void*) (&(bool) {true}),
     (void*) (&(uint32_t) {115200}),
     (void*) (&(bool) {false}),
@@ -72,7 +77,8 @@ const void* const defaults[] = {
     (void*) (&(float) {1.0f}),
 };
 
-const bool preserveds[] = {
+static const bool preserveds[] = {
+    true,
     true,
     true,
     false,
@@ -86,7 +92,8 @@ const bool preserveds[] = {
     false,
 };
 
-const bool readOnlys[] = {
+static const bool readOnlys[] = {
+    true,
     true,
     true,
     true,
@@ -102,6 +109,8 @@ const bool readOnlys[] = {
 
 static void* GetValue(Ximu3Settings * const settings, const Ximu3SettingsIndex index) {
     switch (index) {
+        case Ximu3SettingsIndexModel:
+            return &settings->values.model;
         case Ximu3SettingsIndexSerialNumber:
             return &settings->values.serialNumber;
         case Ximu3SettingsIndexHardwareVersion:
@@ -126,7 +135,7 @@ static void* GetValue(Ximu3Settings * const settings, const Ximu3SettingsIndex i
             return &settings->values.exampleFloat;
 
     }
-    return NULL; // avoid compiler warning
+    return NULL; // unreachable code: -Werror=switch
 }
 
 Metadata MetadataGet(Ximu3Settings * const settings, const Ximu3SettingsIndex index) {
