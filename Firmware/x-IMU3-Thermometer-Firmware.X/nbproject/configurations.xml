@@ -405,11 +405,11 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>5.10</languageToolchainVersion>
+        <languageToolchainVersion>6.00</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32MM-GPM-0XX_DFP" vendor="Microchip" version="1.5.160"/>
+        <pack name="PIC32MM-GPM-0XX_DFP" vendor="Microchip" version="1.6.166"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
