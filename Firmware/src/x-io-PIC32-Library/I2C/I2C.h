@@ -27,22 +27,51 @@ typedef enum {
 } I2CClockFrequency;
 
 /**
+ * @brief I2C operation.
+ */
+typedef enum {
+    I2COperationStart,
+    I2COperationRepeatedStart,
+    I2COperationStop,
+    I2COperationTransmit,
+    I2COperationTransmitAddressRead,
+    I2COperationTransmitAddressWrite,
+    I2COperationReceive,
+    I2COperationAck,
+    I2COperationNack,
+} I2COperation;
+
+/**
+ * @brief I2C instruction.
+ */
+typedef struct {
+    const I2COperation operation;
+
+    union {
+        const uint8_t data; // must be assigned for I2COperationTransmit
+        const uint8_t address; // must be assigned for I2COperationTransmitAddressRead and I2COperationTransmitAddressWrite
+        uint8_t * const destination; // must be assigned for I2COperationAck and I2COperationNack
+    };
+} I2CInstruction;
+
+/**
  * @brief Timeout in timer ticks. Equal to 10 clock cycles for the slowest clock
  * frequency.
  */
-#define I2C_TIMEOUT (TIMER_TICKS_PER_SECOND / (I2CClockFrequency100kHz / 10))
+#define I2C_TIMEOUT (TIMER_TICKS_PER_SECOND / ((unsigned) I2CClockFrequency100kHz / 10U))
 
 /**
  * @brief I2C interface.
  */
 typedef struct {
-    void (*const start)(void);
-    void (*const repeatedStart)(void);
-    void (*const stop)(void);
-    bool (*const send)(const uint8_t byte);
-    bool (*const sendAddressRead)(const uint8_t address);
-    bool (*const sendAddressWrite)(const uint8_t address);
-    uint8_t(*const receive)(const bool ack);
+    void (*const start) (void);
+    void (*const repeatedStart) (void);
+    void (*const stop) (void);
+    bool (*const transmit) (const uint8_t byte);
+    bool (*const transmitAddressRead) (const uint8_t address);
+    bool (*const transmitAddressWrite) (const uint8_t address);
+    uint8_t(*const receiveAck)(void);
+    uint8_t(*const receiveNack)(void);
 } I2C;
 
 //------------------------------------------------------------------------------
@@ -57,7 +86,8 @@ void I2CPrintStop(void);
 void I2CPrintByte(const uint8_t byte);
 void I2CPrintReadAddress(const uint8_t address);
 void I2CPrintWriteAddress(const uint8_t address);
-void I2CPrintAckNack(const bool ack);
+void I2CPrintAck(void);
+void I2CPrintNack(void);
 
 #endif
 
